@@ -69,16 +69,51 @@ class RM_JSModel extends RM_BaseModel {
         switch( $options['RMSide']  ) :
             case 'left' : $pushSide = 'left'; $pos = ''; break;
             case 'right' : $pushSide = 'left'; $pos = '-'; break;
-            case 'top' : $pushSide = 'top'; $pos = ''; break;
-            case 'bottom' : $pushSide = 'top'; $pos = '-'; break;
+            case 'top' : $pushSide = 'marginTop'; $pos = ''; break;
+            case 'bottom' : $pushSide = 'marginTop'; $pos = '-'; break;
         endswitch;
 
         $sideSlideOpen = $side == 'right' && empty( $slideOpen ) ? " \$RMjQuery( 'body' ).addClass( 'RMPushOpen' ); " : '';
         $sideSlideRemove =  $side == 'right' && empty( $slideRemove ) ? " \$RMjQuery( 'body' ).removeClass( 'RMPushOpen' ); " : '';
         
-
-        $slideOver = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"{$pos}{$width}%\" }, 500, 'linear' ); " : '';
+/*
+|--------------------------------------------------------------------------
+| Slide Push Animation
+|--------------------------------------------------------------------------
+|
+| This is where we deal with the JavaScript needed to change the main lines
+| to an X if this option has been set
+|
+*/
         
+$slideOver = null;
+      
+if( $options['RMAnim'] == 'push' && !empty( $options['RMPushCSS'] ) ) :
+    
+    if( $options['RMSide'] == 'top' || $options['RMSide'] == 'bottom' ) :
+   
+        $slideOver = "
+        
+            var MenuHeight = \$RMjQuery( '#responsive-menu' ).css( 'height' );
+        
+            \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"{$pos}\" + MenuHeight }, 500, 'linear' );
+
+
+        ";
+        
+    else :
+        
+        $slideOver = "
+        
+            \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"{$pos}{$width}%\" }, 500, 'linear' );
+
+
+        ";
+        
+    endif;
+
+endif;
+    
         $slideOverCss = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).addClass( 'RMPushSlide' ); " : '';
 
         $slideBack = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"0\" }, 500, 'linear' ); " : '';
@@ -89,15 +124,15 @@ class RM_JSModel extends RM_BaseModel {
 
 /*
 |--------------------------------------------------------------------------
-| Change to X Options
+| Change to X or Clicked Menu Image Option
 |--------------------------------------------------------------------------
 |
 | This is where we deal with the JavaScript needed to change the main lines
-| to an X if this option has been set
+| to an X or click image if this option has been set
 |
 */
         
-if( $options['RMX'] ) : 
+if( $options['RMX'] || $options['RMClickImgClicked'] ) : 
 
     $closeX = " \$RMjQuery( '#click-menu #RMX' ).css( 'display', 'none' );
                 \$RMjQuery( '#click-menu #RM3Lines' ).css( 'display', 'block' ); ";
@@ -109,8 +144,7 @@ else :
     $closeX = "";
     $showX = "";
 
-endif;
-            
+endif;            
 
 /*
 |--------------------------------------------------------------------------
@@ -126,30 +160,33 @@ endif;
 | - None !['RMExpandPar'] && !['RMExpand']
 |
 */
-                        
+   
+$downArrow = '&#9660;';
+$upArrow = '&#9650;';
+
 if ( !$options['RMExpand'] ) :
 
-    $clickedLink = '<span class=\"appendLink\">&#9660;</span>';  
-    $clickLink = '<span class=\"appendLink\">&#9660;</span>';  
+    $clickedLink = '<span class=\"appendLink\">' . $downArrow . '</span>';  
+    $clickLink = '<span class=\"appendLink\">' . $downArrow . '</span>';  
 
 else :
 
-    $clickedLink = '<span class=\"appendLink\">&#9650;</span>';
-    $clickLink = '<span class=\"appendLink\">&#9650;</span>'; 
+    $clickedLink = '<span class=\"appendLink rm-append-active\">' . $upArrow . '</span>';
+    $clickLink = '<span class=\"appendLink rm-append-active\">' . $upArrow . '</span>'; 
 
 endif;
 
 if( $options['RMExpandPar'] ) :
 
-    $clickedLink = '<span class=\"appendLink\">&#9650;</span>';
-    $clickLink = '<span class=\"appendLink\">&#9660;</span>'; 
+    $clickedLink = '<span class=\"appendLink rm-append-active\">' . $upArrow . '</span>';
+    $clickLink = '<span class=\"appendLink\">' . $downArrow . '</span>'; 
 
 endif;
 
 if( $options['RMExpandPar'] && $options['RMExpand'] ) :
 
-    $clickedLink = '<span class=\"appendLink\">&#9650;</span>';
-    $clickLink = '<span class=\"appendLink\">&#9650;</span>'; 
+    $clickedLink = '<span class=\"appendLink rm-append-active\">' . $upArrow . '</span>';
+    $clickLink = '<span class=\"appendLink rm-append-active\">' . $upArrow . '</span>'; 
 
 endif;
     
@@ -206,9 +243,17 @@ if( $options['RMIgnParCli'] ) :
 
     $js .= "
 
-        \$RMjQuery( '#responsive-menu .responsive-menu > li.menu-item-has-children' ).children( 'a' ).addClass( 'rm-click-disabled' );
- 
-        \$RMjQuery( '#responsive-menu .responsive-menu > li.menu-item-has-children' ).children( 'a' ).on( 'click', function( e ) {
+        \$RMjQuery( '#responsive-menu ul > li.menu-item-has-children' ).children( 'a' ).addClass( 'rm-click-disabled' );
+
+        \$RMjQuery( '#responsive-menu ul > li.menu-item-has-children' ).children( 'a' ).on( 'click', function( e ) {
+        
+            e.preventDefault();
+            
+        });
+
+        \$RMjQuery( '#responsive-menu ul > li.page_item_has_children' ).children( 'a' ).addClass( 'rm-click-disabled' );
+
+        \$RMjQuery( '#responsive-menu ul > li.page_item_has_children' ).children( 'a' ).on( 'click', function( e ) {
         
             e.preventDefault();
             
@@ -292,6 +337,7 @@ $js.= "
 
         \$RMjQuery( '#responsive-menu' ).css( 'display', 'block' ); 
         \$RMjQuery( '#responsive-menu' ).addClass( 'RMOpened' );  
+        \$RMjQuery( '#click-menu' ).addClass( 'click-menu-active' );  
 
         \$RMjQuery( '#responsive-menu' ).stop().animate( { $side: \"0\" }, $speed, 'linear', function() { 
 
@@ -329,6 +375,7 @@ $js .= "
             $closeX
             \$RMjQuery( '#responsive-menu' ).css( 'display', 'none' );  
             \$RMjQuery( '#responsive-menu' ).removeClass( 'RMOpened' );  
+            \$RMjQuery( '#click-menu' ).removeClass( 'click-menu-active' ); 
 
             isOpen = false;
 
@@ -380,20 +427,60 @@ $js .= "
 */
             
 if( !$options['RMExpand'] )
-    $js .= "\$RMjQuery( '#responsive-menu .responsive-menu .sub-menu' ).css( 'display', 'none' );";
+    $js .= "\$RMjQuery( '#responsive-menu ul ul' ).css( 'display', 'none' );";
     
     
 $js .= " 
     
     clickLink = '{$clickLink}';
     clickedLink = '{$clickedLink}';
-
-    \$RMjQuery( '#responsive-menu .responsive-menu .menu-item-has-children' ).not( '.current-menu-item, .current-menu-ancestor, .current_page_ancestor' ).prepend( clickLink );
-
-    \$RMjQuery( '#responsive-menu .responsive-menu .menu-item-has-children.current-menu-item, #responsive-menu .responsive-menu .menu-item-has-children.current_page_ancestor, #responsive-menu .responsive-menu .menu-item-has-children.current-menu-ancestor' ).prepend( clickedLink );
-
+        
+    excludeList = '.current-menu-item, .current-menu-ancestor, .current_page_ancestor';
+        
+    \$RMjQuery( '#responsive-menu .menu-item-has-children' ).not( excludeList ).prepend( clickLink );
+    
+    \$RMjQuery( '#responsive-menu .page_item_has_children.current-menu-item' ).prepend( clickedLink );  
+    \$RMjQuery( '#responsive-menu .page_item_has_children.current-menu-ancestor' ).prepend( clickedLink );    
+    \$RMjQuery( '#responsive-menu .menu-item-has-children.current-menu-item' ).prepend( clickedLink ); 
+    \$RMjQuery( '#responsive-menu .menu-item-has-children.current-menu-ancestor').prepend( clickedLink );
+    
+    \$RMjQuery( '#responsive-menu .page_item_has_children' ).not( excludeList ).prepend( clickLink );
+    \$RMjQuery( '#responsive-menu .menu-item-has-children.current_page_ancestor' ).prepend( clickedLink ); 
+    \$RMjQuery( '#responsive-menu .page_item_has_children.current_page_ancestor' ).prepend( clickedLink );
+    
 ";
                 
+/*
+|--------------------------------------------------------------------------
+| Accordion Animation
+|--------------------------------------------------------------------------
+|
+| This is the part that deals with the accordion animation
+|
+*/     
+    
+if( $options['RMAccordion'] && $options['RMAccordion'] == 'accordion' ) :
+                
+    $accordion = " 
+
+    if( \$RMjQuery( this ).closest( 'ul' ).is( '.responsive-menu' ) ) {
+
+        \$RMjQuery( '.responsive-menu ul' ).slideUp();
+        
+        \$RMjQuery( '.appendLink' ).removeClass( 'rm-append-active' );
+        \$RMjQuery( '.appendLink' ).html( '{$downArrow}' );
+            
+    }
+
+    ";
+
+else :
+        
+    $accordion = null;
+    
+endif;
+
+           
 /*
 |--------------------------------------------------------------------------
 | Toggle Buttons Function
@@ -407,24 +494,30 @@ $js .= "
     
     \$RMjQuery( '.appendLink' ).on( 'click', function() { 
 
-        \$RMjQuery( this ).nextAll( 'ul.sub-menu' ).toggle(); 
+        $accordion
+    
+        \$RMjQuery( this ).nextAll( '#responsive-menu ul ul' ).slideToggle(); 
 
-        \$RMjQuery( this ).html( \$RMjQuery( this ).html() == '\u25B2' ? '&#9660;' : '&#9650;' );
+        \$RMjQuery( this ).html( \$RMjQuery( this ).hasClass( 'rm-append-active' ) ? '{$downArrow}' : '{$upArrow}' );
+        \$RMjQuery( this ).toggleClass( 'rm-append-active' );
 
         $setHeight
 
-    } );
+    });
     
     \$RMjQuery( '.rm-click-disabled' ).on( 'click', function() { 
 
-        \$RMjQuery( this ).nextAll( 'ul.sub-menu' ).toggle(); 
+        $accordion
+            
+        \$RMjQuery( this ).nextAll( '#responsive-menu ul ul' ).slideToggle(); 
 
-        \$RMjQuery( this ).siblings( '.appendLink' ).html( \$RMjQuery( this ).siblings( '.appendLink' ).html() == '\u25B2' ? '&#9660;' : '&#9650;' );
-
+        \$RMjQuery( this ).siblings( '.appendLink' ).html( \$RMjQuery( this ).hasClass( 'rm-append-active' ) ? '{$downArrow}' : '{$upArrow}' );
+        \$RMjQuery( this ).toggleClass( 'rm-append-active' );
+        
         $setHeight
 
-    } );
-                
+    }); 
+    
 ";
  
 /*
@@ -440,7 +533,7 @@ $js .= "
 if ( isset( $options['RMClickClose'] ) && $options['RMClickClose'] == 'close' ) : 
 
    $js .= " 
-       \$RMjQuery( '#responsive-menu .responsive-menu li a' ).on( 'click', function() { 
+       \$RMjQuery( '#responsive-menu ul li a' ).on( 'click', function() { 
 
            closeRM();
 
@@ -462,9 +555,13 @@ if( $options['RMExpandPar'] ) :
             
     $js .= "
 
-        \$RMjQuery( '#responsive-menu .responsive-menu .current_page_ancestor.menu-item-has-children' ).children( 'ul' ).css( 'display', 'block' );
-        \$RMjQuery( '#responsive-menu .responsive-menu .current-menu-ancestor.menu-item-has-children' ).children( 'ul' ).css( 'display', 'block' );
-        \$RMjQuery( '#responsive-menu .responsive-menu .current-menu-item.menu-item-has-children' ).children( 'ul' ).css( 'display', 'block' );
+        \$RMjQuery( '#responsive-menu .current_page_ancestor.menu-item-has-children' ).children( 'ul' ).css( 'display', 'block' );
+        \$RMjQuery( '#responsive-menu .current-menu-ancestor.menu-item-has-children' ).children( 'ul' ).css( 'display', 'block' );
+        \$RMjQuery( '#responsive-menu .current-menu-item.menu-item-has-children' ).children( 'ul' ).css( 'display', 'block' );
+        
+        \$RMjQuery( '#responsive-menu .current_page_ancestor.page_item_has_children' ).children( 'ul' ).css( 'display', 'block' );
+        \$RMjQuery( '#responsive-menu .current-menu-ancestor.page_item_has_children' ).children( 'ul' ).css( 'display', 'block' );
+        \$RMjQuery( '#responsive-menu .current-menu-item.page_item_has_children' ).children( 'ul' ).css( 'display', 'block' );
 
     ";
                 
@@ -495,7 +592,7 @@ $js .= $options['RMExternal'] ? '' : '</script>';
         
 /*
 |--------------------------------------------------------------------------
-| Return Finish Script
+| Return Finished Script
 |--------------------------------------------------------------------------
 |
 | Finally we return the final script back

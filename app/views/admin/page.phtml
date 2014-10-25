@@ -145,7 +145,7 @@
                 
             </div>
           
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
 
                 <h2><?php _e( 'Responsive Menu Options', 'responsive-menu' ); ?></h2>
 
@@ -154,9 +154,14 @@
 
                 <hr />
 
-                <h4><?php _e( 'Viewport Meta Tag Check', 'responsive-menu' ); ?>
-                    
-                    <?php if ( $portTag = self::checkViewPortTag() ) : ?>
+                <h3><?php _e( 'Meta Tag Check', 'responsive-menu' ); ?></h3>
+                
+                <table>
+
+                    <tr>
+                        <td><h4><?php _e( 'Viewport Meta Tag Check', 'responsive-menu' ); ?>
+     
+                    <?php if ( $portTag = self::checkViewPortTag( get_bloginfo( 'url' ) ) ) : ?>
                     
                         <span class='success'> - <?php _e( 'Below Viewport Meta Tag Found', 'responsive-menu' ); ?></span>
                     
@@ -167,7 +172,9 @@
                     endif; ?>
                     
                 </h4> 
-
+</td>
+                    </tr>
+                    <tr><td>
                 <?php if( $portTag ) : ?>
                 
                     &lt;meta name='viewport' content='<?php echo $portTag; ?>' /&gt;
@@ -177,12 +184,27 @@
                     <span class='error'><?php _e( 'Viewport Meta Tag Not Found', 'responsive-menu' ); ?></span>
                     
                 <?php endif; ?>
-                
+                        </td>
+                    <tr>
+                        <td>
                 <h4><?php _e( 'Recommended Metaport Tag', 'responsive-menu' ); ?></h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                 
                 &lt;meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' /&gt;
-                
-                <br /><br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>                            
+                            <h4 class="divider">
+                                <?php _e( 'Note', 'responsive-menu' ); ?>: 
+                                <?php _e( 'This is only a reference guide and is not critical if you are seeing errors', 'responsive-menu' ); ?>.
+                            </h4>
+                        </td>
+                    </tr>
+                </table>
 
                 <hr />
                 
@@ -294,6 +316,38 @@
                                 value="<?php _e( 'Upload Image', 'responsive-menu' ); ?>" 
                                 class="button RMImageButton" 
                                 for="RMClickImg"
+                                />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            <h4></h4> 
+
+                            <h5></h5>
+
+
+                        </td>
+                        <td>
+
+                            <h4><?php _e( 'Click Menu Image When Clicked', 'responsive-menu' ); ?></h4> 
+
+                            <h5><?php _e( 'This is the click image button that replaces the 3 lines when clicked. If empty, the 3 lines will be used', 'responsive-menu' ); ?></h5>
+
+                            <input 
+                                type="text" 
+                                id="RMClickImgClicked" 
+                                name="RMClickImgClicked" 
+                                value="<?php echo isset( $data['RMClickImgClicked'] ) ? $data['RMClickImgClicked'] : ''; ?>" 
+                                />
+                            
+                            <input 
+                                type="button" 
+                                id="RMClickHovImgButton" 
+                                value="<?php _e( 'Upload Image', 'responsive-menu' ); ?>" 
+                                class="button RMImageButton" 
+                                for="RMClickImgClicked"
                                 />
 
                         </td>
@@ -691,6 +745,66 @@
                             name="RMRight" 
                             value="<?php echo isset($data['RMRight']) ? $data['RMRight'] : ''; ?>" 
                             /> %
+
+                    </td>
+                </tr>
+            </table>
+            
+            <hr />
+                
+            <h3><?php _e( '3 Line Size Settings', 'responsive-menu' ); ?></h3>
+
+            <table>
+                <tr>
+                    <td>
+
+                        <h4><?php _e( 'Width', 'responsive-menu' ); ?></h4> 
+
+                        <h5><?php _e( 'This is the width of the individual 3 lines', 'responsive-menu' ); ?></h5>
+
+                        <input 
+                            class="numberInput" 
+                            type="text" 
+                            name="RMLineWidth" 
+                            value="<?php echo isset($data['RMLineWidth']) ? $data['RMLineWidth'] : ''; ?>" 
+                            /> <?php _e( 'px', 'responsive-menu' ); ?>
+
+                    </td>
+                    <td>
+
+                        <h4><?php _e( 'Height', 'responsive-menu' ); ?></h4> 
+
+                        <h5><?php _e( 'This is the height of the individual 3 lines', 'responsive-menu' ); ?></h5>
+
+                        <input 
+                            class="numberInput" 
+                            type="text" 
+                            name="RMLineHeight" 
+                            value="<?php echo isset($data['RMLineHeight']) ? $data['RMLineHeight'] : ''; ?>" 
+                            /> <?php _e( 'px', 'responsive-menu' ); ?>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <h4><?php _e( 'Margin', 'responsive-menu' ); ?></h4> 
+
+                        <h5><?php _e( 'This is the margin between the individual 3 lines', 'responsive-menu' ); ?></h5>
+
+                        <input 
+                            class="numberInput" 
+                            type="text" 
+                            name="RMLineMargin" 
+                            value="<?php echo isset($data['RMLineMargin']) ? $data['RMLineMargin'] : ''; ?>" 
+                            /> <?php _e( 'px', 'responsive-menu' ); ?>
+
+                    </td>
+                    <td>
+
+                        <h4></h4> 
+
+                        <h5></h5>
 
                     </td>
                 </tr>
@@ -1242,6 +1356,31 @@
                     
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+
+                            <h4><?php _e( 'Accordion Animation For Sub-Menus', 'responsive-menu' ); ?></h4> 
+
+                            <h5><?php _e( 'Tick to enable the accordion animation for sub-menu items', 'responsive-menu' ); ?>.</h5>
+
+                        <input 
+                            type="checkbox" 
+                            name="RMAccordion" 
+                            id="RMAccordion"
+                            value="accordion"
+                            <?php echo isset( $data['RMAccordion'] ) && $data['RMAccordion'] == 'accordion' ? ' checked="checked" ' : ''; ?>
+                            />
+
+                        </td>
+                        <td>
+
+                            <h4></h4> 
+
+                            <h5></h5>
+
+                    
+                        </td>
+                    </tr>
                     
                 </table>
  
@@ -1296,6 +1435,42 @@
                     value="<?php _e( 'Update Responsive Menu Options', 'responsive-menu' ); ?>"
                     />
 
+                <input 
+                    type="submit" 
+                    class="button" 
+                    name="RMExport" 
+                    value="<?php _e( 'Export Options', 'responsive-menu' ); ?>"
+                    />
+                    
+                    <h3>Import Options</h3>
+
+                    <hr />
+
+                    <table>
+
+                        <tr>
+
+                            <td>
+
+                                <input 
+                                    type="file" 
+                                    class="button file" 
+                                    name="RMImportFile" 
+                                    value="<?php _e( 'Import File', 'responsive-menu' ); ?>"
+                                    />
+
+                                <input 
+                                    type="submit" 
+                                    class="button" 
+                                    name="RMImport" 
+                                    value="<?php _e( 'Import Options', 'responsive-menu' ); ?>"
+                                    />
+                            </td>
+
+                        </tr>
+
+                    </table>
+                
             </form>
 
         </div>

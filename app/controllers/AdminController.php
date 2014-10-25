@@ -68,23 +68,30 @@ class RM_AdminController extends RM_BaseController {
     
     static function adminPage() {
         
-        
-        if( RM_Input::post( 'RMSubmit' ) ) :
+        if( RM_Input::post( 'RMExport' ) ) :
             
-            RM_AdminModel::save( RM_Input::post() );
+            RM_Export::export();
+
+        endif;
+
+        if( RM_Input::post( 'RMSubmit' ) || RM_Input::post( 'RMImport' ) ) :
+                    
+            $data = RM_Input::post( 'RMImport' ) ? RM_Import::getData( RM_Input::file( 'RMImportFile' ) ) : RM_Input::post();
+
+            RM_AdminModel::save( $data );
         
             if( ResponsiveMenu::getOption( 'RMExternal' ) ) : 
                 
                 
                 RM_FolderModel::create();
             
-                $js = RM_JSModel::getJs( ResponsiveMenu::getOptions()  );        
+                $js = RM_JSModel::getJs( ResponsiveMenu::getOptions() );        
                 $js = ResponsiveMenu::getOption( 'RMMinify' ) == 'minify' ? RM_JSModel::Minify( $js ) : $js = $js;        
                 RM_JSModel::createJSFile( $js );
             
                 
-                $css = RM_CSSModel::getCSS( 'strip_tags' );
-                $css = RM_CSSModel::Minify( $css );
+                $css = RM_CSSModel::getCSS( ResponsiveMenu::getOptions() );
+                $css = ResponsiveMenu::getOption( 'RMMinify' ) == 'minify' ? RM_JSModel::Minify( $css ) : $css = $css; 
                 RM_CSSModel::createCSSFile( $css );
 
                 

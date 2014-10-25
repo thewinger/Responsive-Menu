@@ -14,10 +14,10 @@
 $config = array( 
     
     
-    'current_version' => 2.1,
+    'current_version' => 2.2,
     
     
-    'is_beta' => false,
+    'is_beta' => true,
     
     
     'plugins_dir' => plugin_dir_path( __FILE__ ),
@@ -97,7 +97,7 @@ $defaults = array(
     'RMClickTitle' => '',
     
     
-    'RMBkgTran' => 'checked',
+    'RMBkgTran' => false,
     
     
     'RMFont' => '',
@@ -243,9 +243,27 @@ $defaults = array(
     
     'RMHtmlLoc' => 'bottom',
     
+    
     /* Added in 2.1 */
     
-    'RMShortcode' => false
+    'RMShortcode' => false,
+    
+    
+    /* Added in 2.2 */
+    
+    'RMLineHeight' => 5,
+    
+    
+    'RMLineWidth' => 33,
+    
+    
+    'RMLineMargin' => 6,
+    
+    
+    'RMClickImgClicked' => null,
+    
+    
+    'RMAccordion' => false,
     
     
 );

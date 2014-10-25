@@ -13,8 +13,8 @@ class RM_BaseModel {
     
     static function Filter( $input ) {
 
-        
-        return stripslashes( strip_tags( trim( $input ) ) );
+        if( is_string( $input ) )
+            return stripslashes( strip_tags( trim( $input ) ) );
         
         
     }
@@ -29,8 +29,8 @@ class RM_BaseModel {
     
     static function FilterHtml( $input ) {
 
-        
-        return trim( stripslashes( $input ) );
+        if( is_string( $input ) )
+            return trim( stripslashes( $input ) );
         
         
     }

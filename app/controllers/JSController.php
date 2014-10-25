@@ -22,10 +22,8 @@ class RM_JSController extends RM_BaseController {
         
         else :
 
-            
-            $inFooter = self::inFooter() ? 'wp_footer' : 'wp_head';
         
-            add_action( $inFooter, array( 'RM_JSController', 'addInline' ) ); 
+            add_action( self::inFooter() ? 'wp_footer' : 'wp_head', array( 'RM_JSController', 'addInline' ) ); 
                
             
         endif;
@@ -43,8 +41,9 @@ class RM_JSController extends RM_BaseController {
     
     static function addInline() {
         
+        $opt = ResponsiveMenu::getOptions();
         
-        echo ResponsiveMenu::getOption( 'RMMinify' ) == 'minify' ? RM_JSModel::Minify( RM_JSModel::getJs( ResponsiveMenu::getOptions() ) ) : RM_JSModel::getJs( ResponsiveMenu::getOptions() );
+        echo ResponsiveMenu::getOption( 'RMMinify' ) == 'minify' ? RM_JSModel::Minify( RM_JSModel::getJs( $opt ) ) : RM_JSModel::getJs( $opt );
             
         
     }

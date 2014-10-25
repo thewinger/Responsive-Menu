@@ -13,12 +13,10 @@ class RM_View {
      * @added 2.0
      */
     
-    static function make( $page, $data ) {
+    static function make( $page, $data ) {  
         
         
-        $page = str_replace( '.', '/', $page );
-        
-        require RM_Registry::get( 'config', 'plugin_base_dir' ) . '/app/views/' . $page . '.phtml';
+        require RM_Registry::get( 'config', 'plugin_base_dir' ) . '/app/views/' . str_replace( '.', '/', $page ) . '.phtml';
         
         
     }
@@ -31,12 +29,11 @@ class RM_View {
      * @added 2.0
      */
     
-    static function checkViewPortTag() {
+    static function checkViewPortTag( $url ) {
 
         
-        if( $metaTags = @get_meta_tags( get_bloginfo( 'url' ) ) ) :
+        if( $metaTags = @get_meta_tags( $url ) ) :
 
-            
             if ( isset( $metaTags['viewport'] ) )
                 return $metaTags['viewport'];
             else 
@@ -81,18 +78,21 @@ class RM_View {
     /**
      * Function to format and display the search bar in the main menu
      *
-     * @param  array  $status
      * @return string
      * @added 2.0
      */
     
-    static function searchBar() { ?>
+    static function searchBar() { 
         
+        /* Added for WPML Compatibility in 2.2
+         * Thanks to miguelcortereal for this */
+        
+        $action = function_exists( 'icl_get_home_url' ) ? icl_get_home_url() : get_home_url(); ?>
 
-        <form action="<?php echo get_site_url(); ?>" id="responsiveSearch" method="get" role="search">
+        <form action="<?php echo $action; ?>" id="responsiveSearch" method="get" role="search">
 
-            <input type="search" name="s" value="" results=5 autosave=responsive-menu placeholder="Search" id="responsiveSearchInput">
-            <input type="submit" style="display: none;" />
+            <input type="search" name="s" value="" placeholder="<?php _e( 'Search', 'responsive-menu' ); ?>" id="responsiveSearchInput">
+            <input type="submit" id="responsiveSearchSubmit" />
             
         </form>
                         
@@ -103,9 +103,8 @@ class RM_View {
     
     
     /**
-     * Function to format and display the search bar in the main menu
+     * Function to format and display the additional content in the main menu
      *
-     * @param  array  $status
      * @return string
      * @added 2.0
      */

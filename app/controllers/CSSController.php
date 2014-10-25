@@ -41,8 +41,9 @@ class RM_CSSController extends RM_BaseController {
     
     static function addInline() {
         
+        $opt = ResponsiveMenu::getOptions();
         
-        echo ResponsiveMenu::getOption( 'RMMinify' ) == 'minify' ? RM_CSSModel::Minify( RM_CSSModel::getCSS() ) : RM_CSSModel::getCSS(); 
+        echo ResponsiveMenu::getOption( 'RMMinify' ) == 'minify' ? RM_CSSModel::Minify( RM_CSSModel::getCSS( $opt ) ) : RM_CSSModel::getCSS( $opt ); 
         
         
     }

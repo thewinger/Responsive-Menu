@@ -26,8 +26,8 @@ class RM_UpgradeController extends RM_BaseController {
                 
                 RM_JSModel::createJSFile( $js );
                 
-                $css = RM_CSSModel::getCSS( 'strip_tags' );
-                $css = RM_CSSModel::Minify( $css );
+                $css = RM_CSSModel::getCSS( ResponsiveMenu::getOptions() );
+                $css = ResponsiveMenu::getOption( 'RMMinify' ) == 'minify' ? RM_CSSModel::Minify( $css ) : $css = $css; 
                 
                 RM_CSSModel::createCSSFile( $css );
 

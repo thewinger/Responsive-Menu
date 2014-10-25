@@ -30,10 +30,12 @@ class RM_Input {
      * @added 2.0
      */
     
-    static function post( $name = null ) {
+    static function post( $name = null ) {   
         
-        
-        return $name && isset( $_POST[$name] ) ? $_POST[$name] : $_POST;
+        if( $name ) 
+            return $name && isset( $_POST[$name] ) ? $_POST[$name] : false;
+        else
+            return $_POST;
         
         
     }
@@ -49,7 +51,29 @@ class RM_Input {
     static function get( $name = null ) {
         
         
-        return $name && isset( $_GET[$name] ) ? $_GET[$name] : $_GET;
+        if( $name ) 
+            return $name && isset( $_GET[$name] ) ? $_GET[$name] : false;
+        else
+            return $_GET;
+        
+        
+    }
+    
+    /**
+     * Function to get only file values
+     *
+     * @param  string  $name
+     * @return array
+     * @added 2.0 
+     */
+    
+    static function file( $name = null ) {
+        
+        
+        if( $name ) 
+            return $name && isset( $_FILES[$name] ) ? $_FILES[$name] : false;
+        else
+            return $_FILES;
         
         
     }

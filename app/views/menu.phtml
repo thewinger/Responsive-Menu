@@ -1,4 +1,4 @@
-<!-- Responsive Menu added by Responsive Menu -->
+<!-- Added by Responsive Menu Plugin created by Peter Featherstone -->
 
 <div id="responsive-menu" <?php echo is_admin_bar_showing() ? 'class="admin-bar-showing"' : ''; ?>>
 
@@ -19,11 +19,11 @@
                      alt="<?php echo $data['RMTitle']; ?>" 
                      title="<?php echo $data['RMTitle']; ?>" />
                 
-            <?php if( isset( $data['RMTitleLink'] ) ) : ?>
-                
+                <?php if( isset( $data['RMTitleLink'] ) ) : ?>
+
                     </a>
-            
-            <?php endif; ?>
+
+                <?php endif; ?>
 
             <?php endif; ?>
 
@@ -35,7 +35,7 @@
                     
             <?php echo $data['RMTitle']; ?>
                 
-            <?php if( isset( $data['RMTitleLink'] ) ) : ?>
+            <?php if( isset( $data['RMTitleLink'] ) && $data['RMTitle'] ) : ?>
                     
                 </a>
             
@@ -65,18 +65,19 @@
     
 </div>
 
-<!-- Click Menu added by Responsive Menu -->
+<!-- Added by Responsive Menu Plugin created by Peter Featherstone -->
 
 <div id="click-menu" <?php echo is_admin_bar_showing() ? 'class="admin-bar-showing"' : ''; ?>>
 
-<?php if( $data['RMX'] ) : ?>
+<?php if( $data['RMX'] || $data['RMClickImgClicked'] ) : ?>
 
-        <div class="threeLines" id="RMX">x</div>
+    <div class="threeLines" id="RMX">
+        <?php echo $data['RMClickImgClicked'] ? '<img class="rm-clicked-img" src="' . $data['RMClickImgClicked'] . '" />' : 'x'; ?>
+    </div>
 
-    <?php endif; ?>
+<?php endif; ?>
 
 <?php if( !$data['RMClickImg'] ) : ?>
-
 
         <div class="threeLines" id="RM3Lines">       
             <div class="line"></div>

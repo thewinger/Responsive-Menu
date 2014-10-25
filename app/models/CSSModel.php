@@ -36,10 +36,8 @@ class RM_CSSModel extends RM_BaseModel {
      * @added 1.0
      */
     
-    static function getCSS( $args = null ) {
-
+    static function getCSS( $options ) {
         
-        $options = ResponsiveMenu::getOptions();
 
         $important = empty( $options['RMRemImp'] ) ? ' !important;' : ';';
         
@@ -100,18 +98,39 @@ class RM_CSSModel extends RM_BaseModel {
         switch( $side ) :
             case 'left' : $pushSide = $side; $pushWidth = $width; $pushPos = 'relative'; break;
             case 'right' : $pushSide = $side; $pushWidth = $width; $pushPos = 'relative'; break;
-            case 'top' : $pushSide = 'top'; $pushWidth = '100'; $pushPos = 'absolute'; break;
-            case 'bottom' : $pushSide = 'bottom'; $pushWidth = '-100'; $pushPos = 'absolute'; break;
+            case 'top' : $pushSide = 'top'; $pushWidth = '100'; $pushPos = 'relative'; break;
+            case 'bottom' : $pushSide = 'bottom'; $pushWidth = '-100'; $pushPos = 'relative'; break;
             default : $pushSide = $side; $pushWidth = $width; break;
         endswitch;
   
-        $css = '';
+        /* Added 2.2 */
         
-        if( $args != 'strip_tags' ) : 
+        $lineHeight = empty( $options['RMLineHeight'] ) ? 6 : $options['RMLineHeight'];
+        $lineWidth = empty( $options['RMLineWidth'] ) ? 33 : $options['RMLineWidth'];
+        $lineMargin = empty( $options['RMLineMargin'] ) ? 6 : $options['RMLineMargin'];
+        
+ /*
+|--------------------------------------------------------------------------
+| Initialise Output
+|--------------------------------------------------------------------------
+|
+| Initialise the JavaScript output variable ready for appending
+|
+*/   
+        
+$css = null;
+        
+/*
+|--------------------------------------------------------------------------
+| Strip Tags If Needed
+|--------------------------------------------------------------------------
+|
+| Determine whether to use the <style> tags
+|
+*/       
 
-            $css .= "<style> ";
-        
-        endif;
+$css .= $options['RMExternal'] ? '' : '<style>';       
+
         
         $css .= "
 
@@ -288,6 +307,7 @@ class RM_CSSModel extends RM_BaseModel {
             #responsive-menu .responsive-menu li		
             { 
                 list-style-type: none{$important}
+                position: relative{$important}
             }
 
             #responsive-menu .responsive-menu ul li:last-child	
@@ -338,6 +358,11 @@ class RM_CSSModel extends RM_BaseModel {
                 line-height: 40px{$important}
             }
 
+            #responsive-menu #responsiveSearchSubmit
+            {
+                display: none{$important}
+            }
+            
             #responsive-menu #responsiveSearchInput
             {
                 width: 91%{$important}
@@ -395,15 +420,15 @@ class RM_CSSModel extends RM_BaseModel {
             
             #click-menu .threeLines
             {
-                width: 33px{$important}
+                width: {$lineWidth}px{$important}
                 height: 33px{$important}
                 margin: auto{$important}
             }
 
             #click-menu .threeLines .line
             {
-                height: 5px{$important}
-                margin-bottom: 6px{$important}
+                height: {$lineHeight}px{$important}
+                margin-bottom: {$lineMargin}px{$important}
                 background: $clickCol{$important}
                 width: 100%{$important}
             }
@@ -477,15 +502,28 @@ class RM_CSSModel extends RM_BaseModel {
         $css .= " }";
 
         $css .= $options['RMAnim'] == 'push' && $options['RMPushCSS'] ? $options['RMPushCSS'] . " { position: {$pushPos}{$important} left: 0px; } " : '';
-        
-        /* Finally Add The tag at the end only if it's an inline style */
-        if( $args != 'strip_tags' ) : 
+ 
+/*
+|--------------------------------------------------------------------------
+| Strip Tags If Needed
+|--------------------------------------------------------------------------
+|
+| Determine whether to use the <style> tags
+|
+*/       
 
-            $css .= "</style> ";
+$css .= $options['RMExternal'] ? '' : '</style>';
+
+/*
+|--------------------------------------------------------------------------
+| Return Finished Styles
+|--------------------------------------------------------------------------
+|
+| Finally we return the final script back
+|
+*/   
         
-        endif;
-        
-        return $css;
+return $css;
         
         
     }
