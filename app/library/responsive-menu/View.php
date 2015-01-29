@@ -113,7 +113,7 @@ class RM_View {
         
         if( ResponsiveMenu::getOption( 'RMHtml' ) ) : ?>
         
-            <div id="rm-additional-content"><?php echo ResponsiveMenu::getOption( 'RMHtml' ); ?></div>
+            <div id="rm-additional-content"><?php echo do_shortcode(ResponsiveMenu::getOption( 'RMHtml' )); ?></div>
                                       
    <?php 
    
