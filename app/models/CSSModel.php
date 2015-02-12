@@ -286,7 +286,6 @@ $css .= $options['RMExternal'] ? '' : '<style>';
             
             #responsive-menu .responsive-menu			
             { 
-                float: left{$important}  
                 width: 100%{$important} 
                 list-style-type: none{$important}
                 margin: 0px{$important}
@@ -377,7 +376,6 @@ $css .= $options['RMExternal'] ? '' : '<style>';
             #responsive-menu .responsive-menu li
             {
                 width: 100%{$important}
-                float: left{$important}
                 margin-left: 0px{$important}
                 padding-left: 0px{$important}
             }
