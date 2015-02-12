@@ -148,7 +148,9 @@ class RM_AdminModel extends RM_BaseModel {
         $RMClickImgClicked = isset( $data['RMClickImgClicked'] ) ? $data['RMClickImgClicked'] : RM_Registry::get( 'defaults', 'RMClickImgClicked' );
         
         $RMAccordion = isset( $data['RMAccordion'] ) ? $data['RMAccordion'] : RM_Registry::get( 'defaults', 'RMAccordion' );
-        
+       
+        /* Add by MKDGS */
+        $RMWalker = isset( $data['RMWalker'] ) ? $data['RMWalker'] : RM_Registry::get( 'defaults', 'RMWalker' );
         
         $optionsArray = array(
             
@@ -289,7 +291,8 @@ class RM_AdminModel extends RM_BaseModel {
             
             'RMAccordion' => self::Filter( $RMAccordion ),
             
-   
+            /* Add by Mkdgs */
+            'RMWalker' => ( class_exists($RMWalker) ) ? $RMWalker : ''
         );
 
         // Update Submitted Options 

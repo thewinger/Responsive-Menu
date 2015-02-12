@@ -51,9 +51,13 @@
         if( !$data['RMSearch'] && $data['RMSearchPos'] == 'above' )
             self::searchBar();
                 
-        wp_nav_menu(array(
+         wp_nav_menu(array(
         'menu' => $data['RM'],
-        'menu_class' => 'responsive-menu'));
+        'menu_class' => 'responsive-menu',
+        /* Add by Mkdgs */
+        'walker' =>  ( !empty($data['RMWalker']) ) ? new $data['RMWalker'] : ''
+        ));
+        
         
         if( !$data['RMSearch'] && $data['RMSearchPos'] == 'below' )
             self::searchBar();
