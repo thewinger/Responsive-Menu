@@ -33,6 +33,8 @@ require_once RM_PLUGIN_DIR . 'library/responsive-menu/Import.php';
 
 require_once RM_PLUGIN_DIR . 'library/responsive-menu/Export.php';
 
+require_once RM_PLUGIN_DIR . 'library/responsive-menu/Transient.php';
+
 require_once RM_PLUGIN_DIR . 'controllers/BaseController.php';
 
 require_once RM_PLUGIN_DIR . 'controllers/AdminController.php';
