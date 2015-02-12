@@ -272,7 +272,7 @@
                                     
                                         $i = 0;
                                     
-                                        foreach( ResponsiveMenu::getMenus() as $menu ) :
+                                        foreach( $menus = ResponsiveMenu::getMenus() as $menu ) :
                                     
                                             $opt = $i == 0 ? 'RM' : '';
                                         
@@ -282,6 +282,8 @@
                                             
                                         endforeach;
                                     
+                                        echo '<tr><td colspan="2"><br /><em>e.g - [responsive-menu RM="' . $menus[0]->slug . '"]</em></td></tr>';
+                                        
                                     else :
                                             
                                             echo '<tr><td colspan="2">Sorry, there are no available options</td></tr>';
