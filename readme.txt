@@ -91,6 +91,7 @@ It also includes the following functionality:
 <li> - Transient Caching to serious increase load speed</li>
 <li> - Croatian translation - Massive thanks to <a href="https://www.facebook.com/pages/Neverone-design/490262371018076">Neverone Design</a> for this!</li>
 <li> - Spanish Translation - Massive thanks to Andrew @ <a href="http://www.webhostinghub.com">WebHostingHub</a> for this!</li>
+<li> - Dutch Translation - Massive thanks to Carlo @ <a href="http://www.quinex.nl/">Quinex</a> for this!</li>
 </ul>
 Please see the current development list on the below page:
 

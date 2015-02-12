@@ -1,227 +1,209 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Responsive Menu WordPress\n"
-"POT-Creation-Date: 2015-02-12 15:04-0000\n"
-"PO-Revision-Date: 2015-02-12 15:04-0000\n"
+"POT-Creation-Date: 2015-02-12 15:06-0000\n"
+"PO-Revision-Date: 2015-02-12 15:06-0000\n"
 "Last-Translator: Peter Featherstone <hello@peterfeatherstone.com>\n"
-"Language-Team: Peter Featherstone <hello@peterfeatherstone.com>\n"
-"Language: fr_FR\n"
+"Language-Team: Carlo van der Pluijm <info@quinex.nl>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.7.4\n"
 "X-Poedit-Basepath: ..\\\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;_\n"
 "X-Poedit-SearchPath-0: app\n"
 
 #: app/config.php:88 app/views/admin/page.phtml:513
 msgid "Menu Title"
-msgstr "Titre du menu"
+msgstr "Menu titel"
 
 #: app/controllers/AdminController.php:50
 #: app/controllers/AdminController.php:51
 msgid "Responsive Menu"
-msgstr "Menu responsive"
+msgstr "Responsive menu"
 
 #: app/controllers/AdminController.php:141
 msgid "Settings"
-msgstr "Paramètres"
+msgstr "Instellingen"
 
 #: app/controllers/GlobalController.php:57
 msgid ""
 "Highly Customisable Responsive Menu Plugin Created By Peter Featherstone"
 msgstr ""
-"Plugin pour menu responsive hautement personnalisable créé par Peter "
-"Featherstone"
 
 #: app/library/responsive-menu/Export.php:23
 msgid "Could not create export file, please check plugin folder permissions"
-msgstr ""
-"Si vous ne pouvez pas exporter un fishier, veuillez vérifier les droits des "
-"dossiers du plugin. "
+msgstr "Kon geen export bestand maken, controleer plugin folder permissies"
 
 #: app/library/responsive-menu/Export.php:43
 msgid "You can download your exported file by clicking here"
-msgstr "Vous pouvez télécharger voter export en cliquant ici"
+msgstr "Je kunt het export bestand hier downloaden"
 
 #: app/library/responsive-menu/Import.php:17
 msgid "No Import File Attached"
-msgstr "Aucun fishier importé attaché"
+msgstr "Geen import bestand bijgevoegd"
 
 #: app/library/responsive-menu/Import.php:20
 msgid "Incorrect Import File Format"
-msgstr "Format d'import incorrect"
+msgstr "Onjuist import bestandsformaat"
 
 #: app/library/responsive-menu/Import.php:23
 msgid "Import File Too Large"
-msgstr "Fichier d'import trop lourd"
+msgstr "Import bestand te groot"
 
 #: app/library/responsive-menu/Import.php:26
 msgid "Import File Not Valid"
-msgstr "Fichier d'import invalide"
+msgstr "Import bestand niet geldig"
 
 #: app/library/responsive-menu/View.php:94
 msgid "Search"
-msgstr "Rechercher"
+msgstr "Zoeken"
 
 #: app/models/AdminModel.php:348
 msgid "You have successfully updated the Responsive Menu options"
-msgstr "Vous avez mis à jours les options de Responsive Menu avec succès."
+msgstr "De responsive menu opties zijn met succes bijgewerkt"
 
 #: app/models/CSSModel.php:24
 msgid "Unable to create CSS file"
-msgstr "Impossible de créer le fichier CSS"
+msgstr "CSS bestand aanmaken niet mogelijk"
 
 #: app/models/FolderModel.php:26
 msgid "Unable to create data folders"
-msgstr "Impossible de créer les dossiers de données"
+msgstr "Data folders maken niet mogelijk"
 
 #: app/models/FolderModel.php:29
 msgid "Unable to create CSS folders"
-msgstr "Impossible de créer les dossiers CSS"
+msgstr "CSS folders maken niet mogelijk"
 
 #: app/models/FolderModel.php:32
 msgid "Unable to create JS folders"
-msgstr "Impossible de créer les dossiers JS"
+msgstr "JS folders maken niet mogelijk"
 
 #: app/models/JSModel.php:24
 msgid "Unable to create JS file"
-msgstr "Impossible de créer le fichier JS"
+msgstr "JS bestand maken niet mogelijk"
 
 #: app/views/admin/page.phtml:159
 msgid "Version"
-msgstr "Version"
+msgstr "Versie"
 
 #: app/views/admin/page.phtml:166
 msgid "Responsive Menu Options"
-msgstr "Options de Responsive Menu"
+msgstr "Responsive menu opties"
 
 #: app/views/admin/page.phtml:173
 msgid "Meta Tag Check"
-msgstr "Vérifier le mega tag"
+msgstr "Meta tag controle"
 
 #: app/views/admin/page.phtml:178
 msgid "Viewport Meta Tag Check"
-msgstr "Vérification du meta tag"
+msgstr "Viewport meta tag controle"
 
 #: app/views/admin/page.phtml:182
 msgid "Below Viewport Meta Tag Found"
-msgstr "Meta tag trouvé ci-dessous"
+msgstr "Onderstaande viewport meta tag gevonden"
 
 #: app/views/admin/page.phtml:200
 msgid "Viewport Meta Tag Not Found"
-msgstr "Meta tag non trouvé"
+msgstr "Viewport meta tag niet gevonden"
 
 #: app/views/admin/page.phtml:206
 msgid "Recommended Metaport Tag"
-msgstr "Meta tag recommandé"
+msgstr "Aanbevolen metaport tag"
 
 #: app/views/admin/page.phtml:218 app/views/admin/page.phtml:1015
 #: app/views/admin/page.phtml:1413
 msgid "Note"
-msgstr "Note"
+msgstr "Let op"
 
 #: app/views/admin/page.phtml:219
 msgid ""
 "This is only a reference guide and is not critical if you are seeing errors, "
 "these can usually be ignored"
 msgstr ""
-"Ceci est seulement une indication de référence et n'est pas obligatoire. Si "
-"vous voyez ces erreurs, elles peuvent généralement être ignorées."
+"Dit is slechts ter kennisgeving en niet kritiek, als je fouten zietkunnen "
+"deze meestal worden genegeerd."
 
 #: app/views/admin/page.phtml:227
 msgid "Shortcode Support"
-msgstr "Utilisation du shortcode"
+msgstr "Shortcode ondersteuning"
 
 #: app/views/admin/page.phtml:236
 msgid "Click to use shortcode"
-msgstr "Cliquer pour utiliser le shortcode"
+msgstr "Klik om de shortcode te gebruiken"
 
 #: app/views/admin/page.phtml:238
 msgid ""
 "Tick if you would like to use a shortcode instead of the default behaviour"
 msgstr ""
-"Cocher si vous souhaitez utiliser un shortcode plutôt que le comportement "
-"par défaut"
+"Aanvinken als je een shortcode wil gebruiken in plaats van "
+"standaardinstelling"
 
 #: app/views/admin/page.phtml:252
 msgid ""
 "For a list of available shortcode options please visit the following page:"
 msgstr ""
-"Pour une liste des shortcodes disponibles veuillez visiter la page suivante :"
+"Bezoek de volgende pagina voor een lijst met beschikbare shortcode opties:"
 
 #: app/views/admin/page.phtml:301
-#, fuzzy
 msgid "Click Button Settings"
-msgstr "Paramètre du bouton de menu"
+msgstr ""
 
 #: app/views/admin/page.phtml:307
-#, fuzzy
 msgid "Click Button Title"
-msgstr "Bouton de menu"
+msgstr ""
 
 #: app/views/admin/page.phtml:309
 msgid "This is the title under the 3 lines of the click button"
-msgstr "Ceci est le titre en dessous des 3 lignes du bouton de menu"
+msgstr ""
 
 #: app/views/admin/page.phtml:319
-#, fuzzy
 msgid "Click Button Image"
-msgstr "Bouton de menu"
+msgstr ""
 
 #: app/views/admin/page.phtml:321
-#, fuzzy
 msgid ""
 "This is the click button that replaces the 3 lines. If empty, the 3 lines "
 "will be used"
 msgstr ""
-"Ceci est l'image du bouton qui remplace les 3 lignes. Si laissé vide, les 3 "
-"lignes seront utilisées"
 
 #: app/views/admin/page.phtml:333 app/views/admin/page.phtml:371
 #: app/views/admin/page.phtml:540 app/views/admin/page.phtml:985
 #: app/views/admin/page.phtml:1005
 msgid "Upload Image"
-msgstr "Insérer une image"
+msgstr "Afbeelding uploaden"
 
 #: app/views/admin/page.phtml:342
-#, fuzzy
 msgid "Change click menu to an X on click"
-msgstr "Changer le bouton de menu en X au clic"
+msgstr ""
 
 #: app/views/admin/page.phtml:345
 msgid "Tick this if you would like the 3 lines to turn into an x once clicked"
 msgstr ""
-"Cocher ceci si vous souhaitez que les 3 lignes deviennent un X une fois "
-"cliqué"
+"Aanvinken als je wilt dat de 3 lijnen wijzigen in een x zodra erop wordt "
+"geklikt"
 
 #: app/views/admin/page.phtml:357
-#, fuzzy
 msgid "Click Button Image When Clicked"
-msgstr "Image du bouton de fermeture"
+msgstr ""
 
 #: app/views/admin/page.phtml:359
-#, fuzzy
 msgid ""
 "This is the click button image that replaces the 3 lines when clicked. If "
 "empty, the 3 lines will be used"
 msgstr ""
-"Ceci est l'image du bouton qui remplace les 3 lignes une fois cliqué. Si "
-"laissé vide, les 3 lignes seront utilisées"
 
 #: app/views/admin/page.phtml:383
 msgid "Fixed Positioning"
-msgstr "Positionnement fixe"
+msgstr "Fixed positie"
 
 #: app/views/admin/page.phtml:385
-#, fuzzy
 msgid ""
 "Tick this if you would like the click button to remain in the same place "
 "when scrolling"
 msgstr ""
-"Cocher si vous souhaitez que le bouton de menu reste fixe au défilement de "
-"la page"
 
 #: app/views/admin/page.phtml:398
 msgid "Click Trigger"
@@ -233,15 +215,15 @@ msgstr ""
 
 #: app/views/admin/page.phtml:413
 msgid "Click Button Size Settings"
-msgstr "Paramètre du bouton de menu"
+msgstr "Klik button afmetingen"
 
 #: app/views/admin/page.phtml:419
 msgid "Width"
-msgstr "Largeur"
+msgstr "Breedte"
 
 #: app/views/admin/page.phtml:421
 msgid "This is the width of the individual 3 lines"
-msgstr "Indiquer la largeur des 3 lignes"
+msgstr "Dit is de breedte van de 3 individuele lijnen"
 
 #: app/views/admin/page.phtml:428 app/views/admin/page.phtml:442
 #: app/views/admin/page.phtml:458 app/views/admin/page.phtml:486
@@ -254,425 +236,411 @@ msgstr "px"
 
 #: app/views/admin/page.phtml:433
 msgid "Height"
-msgstr "Hauteur"
+msgstr "Hoogte"
 
 #: app/views/admin/page.phtml:435
 msgid "This is the height of the individual 3 lines"
-msgstr "Indiquer la hauteur des 3 lignes individuellement"
+msgstr "Dit is de hoogte van de 3 individuele lijnen"
 
 #: app/views/admin/page.phtml:449
 msgid "Margin"
-msgstr "Marge"
+msgstr "Margin"
 
 #: app/views/admin/page.phtml:451
 msgid "This is the margin between the individual 3 lines"
-msgstr "Indiquer la marge entre les 3 lignes"
+msgstr "Dit is de afstand tussen de 3 individuele lijnen"
 
 #: app/views/admin/page.phtml:471
-#, fuzzy
 msgid "Click Button Location Settings"
-msgstr "Paramètre du bouton de menu"
+msgstr ""
 
 #: app/views/admin/page.phtml:477 app/views/admin/page.phtml:600
 msgid "Top"
-msgstr "Haut"
+msgstr "Boven"
 
 #: app/views/admin/page.phtml:479
-#, fuzzy
 msgid ""
 "This is the distance from the top of the page in px that the click button "
 "will be displayed"
 msgstr ""
-"Indiquer la distance du haut de la page en px à laquelle le bouton de menu "
-"sera affiché"
 
 #: app/views/admin/page.phtml:491 app/views/admin/page.phtml:594
 #: app/views/admin/page.phtml:1389
 msgid "Right"
-msgstr "Droite"
+msgstr "Rechts"
 
 #: app/views/admin/page.phtml:493
 msgid ""
 "This is the distance from the right of the page in % that the menu will be "
 "displayed"
 msgstr ""
-"Indiquer la distance depuis la droite de la page en % à laquelle le bouton "
-"de menu sera affiché"
+"Dit is de afstand van de rechterkant van de pagina in % waar het menu wordt "
+"getoond"
 
 #: app/views/admin/page.phtml:506
 msgid "Menu Settings"
-msgstr "Paramètres du menu"
+msgstr "Menu instellingen"
 
 #: app/views/admin/page.phtml:515
 msgid "This is the title at the top of the responsive menu"
-msgstr "Ceci est le titre en haut du menu responsive"
+msgstr "Dit is de titel bovenaan het responsive menu"
 
 #: app/views/admin/page.phtml:526
 msgid "Menu Image"
-msgstr "Image de menu"
+msgstr "Menu afbeelding"
 
 #: app/views/admin/page.phtml:528
 msgid ""
 "This is the image that sits next to the responsive menu title. The best size "
 "is 32px x 32px"
 msgstr ""
-"Ceci est l'image présente à côté du titre du menu. La meilleure taille est "
-"32px x 32px"
+"Dit is de afbeelding naast de menu titel. Optimale afmeting is 32px x 32px"
 
 #: app/views/admin/page.phtml:550
 msgid "Choose Menu To Responsify"
-msgstr "Choisir le menu responsive"
+msgstr "Kies het menu dat responsive moet worden"
 
 #: app/views/admin/page.phtml:552
 msgid "This is the menu that will be used responsively"
-msgstr "Ceci est le menu qui sera utilisé pour le responsive"
+msgstr "Dit is het menu dat responsive wordt gebruikt"
 
 #: app/views/admin/page.phtml:572
 msgid "You haven't set up any site menus yet"
-msgstr "Vous n'avez pas encore sélectionné de menu"
+msgstr "Je hebt nog geen site menus ingesteld"
 
 #: app/views/admin/page.phtml:579
 msgid "Slide Side"
-msgstr "Côté animé (slide)"
+msgstr "Slide kant"
 
 #: app/views/admin/page.phtml:581
 msgid "This is the side of the screen from which the menu will slide"
-msgstr "Ceci est le côté de l'écran par lequel le menu va apparaître"
+msgstr "Dit is de kant van het scherm vanaf waar het menu zal schuiven"
 
 #: app/views/admin/page.phtml:588 app/views/admin/page.phtml:1372
 #: app/views/admin/page.phtml:1379
 msgid "Left"
-msgstr "Gauche"
+msgstr "Links"
 
 #: app/views/admin/page.phtml:606
 msgid "Bottom"
-msgstr "Bas"
+msgstr "Onder"
 
 #: app/views/admin/page.phtml:616
 msgid "Menu Title Link"
-msgstr "Lien du titre de menu"
+msgstr "Menu titel link"
 
 #: app/views/admin/page.phtml:618
 msgid "This is the link location for the title"
-msgstr "Ceci est le lien pour le titre de menu"
+msgstr "Dit is de link locatie voor de titel"
 
 #: app/views/admin/page.phtml:628
 msgid "Menu Title Link Location"
-msgstr "Localisation du lien du titre de menu"
+msgstr "Menu titel link locatie"
 
 #: app/views/admin/page.phtml:630
 msgid "This is where your title page will be opened once clicked"
-msgstr "Ceci est où votre page sera ouverte une fois ouverte"
+msgstr "Dit is waar de pagina zal openen zodra er geklikt is"
 
 #: app/views/admin/page.phtml:637
 msgid "New Tab"
-msgstr "Nouvel onglet"
+msgstr "Nieuwe tab"
 
 #: app/views/admin/page.phtml:643
 msgid "Same Page"
-msgstr "Même page"
+msgstr "Zelfde pagina"
 
 #: app/views/admin/page.phtml:649
 msgid "Parent Page"
-msgstr "Page parente"
+msgstr "Ouder pagina"
 
 #: app/views/admin/page.phtml:655
 msgid "Full Window Body"
-msgstr "Corps de fenêtre"
+msgstr "Volledig scherm"
 
 #: app/views/admin/page.phtml:665
-#, fuzzy
 msgid "Menu Advanced Settings"
-msgstr "Paramètres du menu"
+msgstr ""
 
 #: app/views/admin/page.phtml:671
 msgid "Menu Breakpoint"
-msgstr "Limite du menu"
+msgstr "Menu breekpunt"
 
 #: app/views/admin/page.phtml:673
 msgid ""
 "This is the point where the responsive menu will be visible in px width of "
 "the browser"
 msgstr ""
-"Ceci est le point auquel le menu responsive sera visible en px d'après la "
-"largeur du navigateur"
+"Dit is het punt waarop het responsive menu actief word in px breedtevan de "
+"browser"
 
 #: app/views/admin/page.phtml:685
 msgid "CSS of Menu To Hide"
-msgstr "CSS du menu à cacher"
+msgstr "CSS van het menu dat verborgen moet worden"
 
 #: app/views/admin/page.phtml:687
 msgid ""
 "This is the CSS of the menu you want to hide once the responsive menu shows"
 msgstr ""
-"Entrer la classe CSS du menu à cacher une fois le menu responsive affiché"
+"Dit is het CSS van het menu dat je wilt verbergen zodra het responsivemenu "
+"wordt getoond"
 
 #: app/views/admin/page.phtml:687 app/views/admin/page.phtml:1499
 msgid "e.g"
-msgstr "ex : "
+msgstr "bijv."
 
 #: app/views/admin/page.phtml:701
 msgid "Menu Depth"
-msgstr "Profondeur du menu"
+msgstr "Menu diepte"
 
 #: app/views/admin/page.phtml:703
 msgid "This is how deep into your menu tree will be visible (max"
-msgstr "Ceci est le niveau jusqu'au quel votre menu sera visible (max 5)"
+msgstr "Dit is hoeveel lagen je menuboom getoond worden (max"
 
 #: app/views/admin/page.phtml:722
 msgid "Menu Width"
-msgstr "Largeur du menu"
+msgstr "Menu breedte"
 
 #: app/views/admin/page.phtml:724
 msgid "This is the width the menu takes up across the page once expanded"
-msgstr "Entrer la largeur qu'utilise le menu à travers la page une fois ouvert"
+msgstr "Dit is de breedte van het uitgeschoven menu t.o.v. het scherm"
 
 #: app/views/admin/page.phtml:725 app/views/admin/page.phtml:1324
 #: app/views/admin/page.phtml:1341 app/views/admin/page.phtml:1355
 #: app/views/admin/page.phtml:1372 app/views/admin/page.phtml:1399
 #: app/views/admin/page.phtml:1515 app/views/admin/page.phtml:1529
 msgid "default"
-msgstr "défaut"
+msgstr "standaard"
 
 #: app/views/admin/page.phtml:745
 msgid "Remove Search Box"
-msgstr "Retirer le champ de recherche"
+msgstr "Verwijder zoekveld"
 
 #: app/views/admin/page.phtml:747
 msgid "Tick if you would like to remove the search box"
-msgstr "Cocher si vous souhaitez retirer le champ de recherche"
+msgstr "Aanvinken als je het zoekveld wilt verwijderen"
 
 #: app/views/admin/page.phtml:760
 msgid "Search Box Positioning"
-msgstr "Positionner le champ de recherche"
+msgstr "Zoekveld positie"
 
 #: app/views/admin/page.phtml:762
 msgid "Select where you would like the search box to appear"
-msgstr "Sélectionner où vous souhaitez faire apparaître le champ de recherche"
+msgstr "Kies waar je het zoekveld wilt tonen"
 
 #: app/views/admin/page.phtml:769 app/views/admin/page.phtml:1603
 msgid "Above Menu Links"
-msgstr "Au-dessus des liens de menu"
+msgstr "Boven de menu links"
 
 #: app/views/admin/page.phtml:774 app/views/admin/page.phtml:1608
 msgid "Below Menu Links"
-msgstr "En-dessous des liens de menu"
+msgstr "Onder de menu links"
 
 #: app/views/admin/page.phtml:784
 msgid "Click to Close Menu on Link Click"
-msgstr "Fermer le menu au clic d'un lien"
+msgstr "Klik om het menu te sluiten na klikken"
 
 #: app/views/admin/page.phtml:786
 msgid ""
 "Tick if you would like to close the menu on each link click, useful for "
 "single page sites"
 msgstr ""
-"Cocher si vous souhaitez fermer le menu à chaque clic sur un lien, pratique "
-"pour des sites one page."
+"Aanvinken als je het menu wilt sluiten na het klikken op een link,makkelijk "
+"voor 1 pagina sites"
 
 #: app/views/admin/page.phtml:799
 msgid "Auto Expand Current Parent Items"
-msgstr "Ouvrir automatiquement les pages parentes courantes"
+msgstr "Huidige ouder items automatisch uitvouwen"
 
 #: app/views/admin/page.phtml:801
 msgid ""
 "Tick if you would like to make the current pages children expanded "
 "automatically"
-msgstr ""
-"Cocher si vous souhaitez afficher automatiquement les enfants de la page "
-"courante"
+msgstr "Aanvinken als je de sublinks automatisch uitgevouwen wil hebben"
 
 #: app/views/admin/page.phtml:815
 msgid "Auto Expand Sub-Menus"
-msgstr "Ouverture automatique des sous-menus"
+msgstr "Sub menus automatisch uitvouwen"
 
 #: app/views/admin/page.phtml:817
 msgid "Tick if you would like sub-menus to be automatically expanded"
-msgstr ""
-"Cocher si vous souhaitez que les sous-menus soient automatiquement ouvert"
+msgstr "Aanvinken als je sub-menus automatisch wilt uitvouwen"
 
 #: app/views/admin/page.phtml:830
 msgid "Ignore Parent Clicks"
-msgstr "Ignorer les clic sur les pages parentes"
+msgstr "Kliks op hoofdmenu items negeren"
 
 #: app/views/admin/page.phtml:832
 msgid "Tick if you would like to ignore clicks on parent links"
-msgstr ""
-"Cocher si vous souhaitez ignorer les clics sur les liens des pages parentes"
+msgstr "Aanvinken als je kliks op hoofdlinks wilt negeren"
 
 #: app/views/admin/page.phtml:846
 msgid "Click to Close Menu on Page Click"
-msgstr "Fermer le menu au clic sur la page"
+msgstr "Klik om het menu te sluite bij klikken in pagina"
 
 #: app/views/admin/page.phtml:848
 msgid "Tick if you would like to close the current menu on page clicks"
-msgstr "Cocher si vous souhaitez fermer le menu au clic sur la page"
+msgstr "Aanvinken als je het menu wilt sluiten na klikken op pagina"
 
 #: app/views/admin/page.phtml:869
-#, fuzzy
 msgid "Technical Settings"
-msgstr "Paramètres"
+msgstr ""
 
 #: app/views/admin/page.phtml:875
 msgid "Minify output"
-msgstr "Minifier"
+msgstr "Minify output"
 
 #: app/views/admin/page.phtml:877
 msgid ""
 "Tick if you would like to minify the script/style output. Saves up to 50% in "
 "file size"
 msgstr ""
-"Cocher si vous souhaitez minifier les scripts/styles. Economise jusqu'à 50% "
-"en taille de fichiers"
+"Aanvinken als je het script/stijl wil minimaliseren. Bespaart to 50%in "
+"bestandsgrootte"
 
 #: app/views/admin/page.phtml:890
 msgid "Include script in footer"
-msgstr "Inclure le script dans le footer"
+msgstr "Script in footer plaatsen"
 
 #: app/views/admin/page.phtml:892
 msgid "Tick if you would like to include your jQuery script in footer"
-msgstr "Cocher si vous souhaitez inclure vous scripts jQuery dans le footer"
+msgstr "Aanvinken als je je JQuery script in de footer wilt plaatsen"
 
 #: app/views/admin/page.phtml:906
 msgid "Include CSS/JS as external files"
-msgstr "Inclure le CSS/JS en fichiers externes"
+msgstr "CSS/JS bestanden als externe bestanden toevoegen"
 
 #: app/views/admin/page.phtml:908
 msgid "Tick if you would like to include CSS and jQuery as external files"
-msgstr ""
-"Cocher si vous souhaitez inclure le CSS et jQuery en tant que fichiers "
-"externes"
+msgstr "Aanvinken als je CSS en JQuery als externe bestanden wilt gebruiken"
 
 #: app/views/admin/page.phtml:919
 msgid "Remove CSS !important tags"
-msgstr "Retirer les !important du CSS"
+msgstr "Verwijder CSS !important tags"
 
 #: app/views/admin/page.phtml:922
 msgid "Tick this if you would like to remove the !important tags from the CSS"
-msgstr "Cocher si vous souhaitez retirer les !important du CSS"
+msgstr "Aanvinken als je de !important tags uit de CSS wilt verwijderen"
 
 #: app/views/admin/page.phtml:923
 msgid ""
 "Ticking this will make it easier to over-ride the styles but may make the "
 "default settings not display well"
 msgstr ""
-"Cocher ceci vous permettra de passer par dessus les style mais risque "
-"d'empêcher les paramètres par défaut de s'afficher correctement."
+"Als je dit doet wordt het makkelijker om stijlen te overschrijven maar de "
+"standaard instellingen kunnen mogelijk niet goed werken"
 
 #: app/views/admin/page.phtml:937
 msgid "Sub Menu Arrow Settings"
-msgstr "Paramètre des flèches de sous-menu"
+msgstr "Sub menu pijltjes instelling"
 
 #: app/views/admin/page.phtml:943
 msgid "Active Geometric Shape"
-msgstr "Forme géométrique active"
+msgstr "Actieve geometrische vorm"
 
 #: app/views/admin/page.phtml:954
 msgid "Inactive Gemetric Shape"
-msgstr "Forme géométrique inactive"
+msgstr "Inactieve geometrische vorm"
 
 #: app/views/admin/page.phtml:967
 msgid "You can find a list of Geometric HTML shape codes below"
-msgstr "Vous pouvez trouver une liste de formes géométriques HTML ci-dessous :"
+msgstr "Een lijst van geometrische HTML vormen kun je hieronder vinden"
 
 #: app/views/admin/page.phtml:973
 msgid "Active Image"
-msgstr "Image active"
+msgstr "Actieve afbeelding"
 
 #: app/views/admin/page.phtml:993
 msgid "Inactive Image"
-msgstr "Image inactive"
+msgstr "Inactieve afbeelding"
 
 #: app/views/admin/page.phtml:1016
 msgid ""
 "Images have preference over shapes, to use HTML shapes please leave the "
 "image field blank"
 msgstr ""
-"Les images sont prioritaires sur les formes géométriques, pour utiliser des "
-"formes HTML veuillez laisser les champs vide"
+"Afbeeldingen gaan boven een vorm, om een HTML vorm te gebruiken dien je het "
+"afbeelding veld leeg te laten"
 
 #: app/views/admin/page.phtml:1023
 msgid "Colour Settings"
-msgstr "Paramètre de couleur"
+msgstr "Kleur instellingen"
 
 #: app/views/admin/page.phtml:1025
 msgid "Background Colours"
-msgstr "Couleur de fond"
+msgstr "Achtergrond kleur"
 
 #: app/views/admin/page.phtml:1029
 msgid "Click Button"
-msgstr "Bouton de menu"
+msgstr "Klik button"
 
 #: app/views/admin/page.phtml:1037
 msgid "Click Button Line & Text Colour"
-msgstr "Couleur des lignes et texte du bouton"
+msgstr "Klik button lijn en tekst kleur"
 
 #: app/views/admin/page.phtml:1039
-#, fuzzy
 msgid "This is the colour of the 3 lines and text for the click button"
-msgstr "Ceci est la couleur des lignes et du texte du bouton de menu"
+msgstr ""
 
 #: app/views/admin/page.phtml:1052
 msgid "Click Button Background Colour"
-msgstr "Couleur de fond du bouton"
+msgstr "Klik button achtergrond kleur"
 
 #: app/views/admin/page.phtml:1054
 msgid "This is the background colour of the 3 lines container"
-msgstr "Ceci est la couleur de fond du bouton de menu"
+msgstr "Dit is de achtergrond kleur van de container van de 3 lijnen"
 
 #: app/views/admin/page.phtml:1069
 msgid "Click Button Background Transparent"
-msgstr "Fond transparent"
+msgstr "Transparante achtergrond klik button"
 
 #: app/views/admin/page.phtml:1071
 msgid ""
 "Tick this if you would like a transparent background on the click button"
-msgstr ""
-"Cocher si vous souhaitez utiliser un fond transparent pour le bouton de menu"
+msgstr "Aanvinken als je een transparante achtergrond wil voor de klik button"
 
 #: app/views/admin/page.phtml:1091
 msgid "Main Menu"
-msgstr "Menu principal"
+msgstr "Hoofdmenu"
 
 #: app/views/admin/page.phtml:1099
 msgid "Menu Background Colour"
-msgstr "Couleur de fond du menu"
+msgstr "Menu achtergrond kleur"
 
 #: app/views/admin/page.phtml:1101
 msgid "This is the background colour of the expanded menu"
-msgstr "Sélectionner la couleur de fond du menu ouvert"
+msgstr "Dit is de achtergrond kleur van het uitgevouwen menu"
 
 #: app/views/admin/page.phtml:1114
 msgid "Menu Background Hover Colour"
-msgstr "Couleur de fond au survol"
+msgstr "Menu achtergrond hover kleur"
 
 #: app/views/admin/page.phtml:1116
 msgid "This is the hover background colour of the expanded menu"
-msgstr "Sélectionner la couleur de fond au survol du menu"
+msgstr "Dit is de hover kleur van de achtergrond van het uitgevouwen menu"
 
 #: app/views/admin/page.phtml:1131
 msgid "Menu Link Border Colour"
-msgstr "Couleur de bordure des liens"
+msgstr "Menu link border kleur"
 
 #: app/views/admin/page.phtml:1133
 msgid "This is the border colour of the  menu links"
-msgstr "Sélectionner la couleur des bordures des liens dans le menu"
+msgstr "Dit is de kleur van de borders van de menu links"
 
 #: app/views/admin/page.phtml:1146
 msgid "Title Background Colour"
-msgstr "Couleur de fond du titre"
+msgstr "Titel achtergrond kleur"
 
 #: app/views/admin/page.phtml:1148
 msgid "This is the background colour of the menu title"
-msgstr "Sélectionner la couleur de fond du titre du menu"
+msgstr "Dit is de achtergrond kleur van de menu titel"
 
 #: app/views/admin/page.phtml:1163
 msgid "Current Page Link Background Colour"
-msgstr "Couleur de fond de la page courante"
+msgstr "Huidige pagina link achtergrond kleur"
 
 #: app/views/admin/page.phtml:1165
 msgid "This is the background colour of the current page link"
-msgstr "Sélectionner la couleur de fond de la page courante"
+msgstr "Dit is de achtergrond kleur van de actieve pagina link"
 
 #: app/views/admin/page.phtml:1178
 msgid "Current Page Link Background Hover Colour"
@@ -684,47 +652,47 @@ msgstr ""
 
 #: app/views/admin/page.phtml:1194
 msgid "Text Colours"
-msgstr "Couleur des textes"
+msgstr "Tekst kleuren"
 
 #: app/views/admin/page.phtml:1203
 msgid "Menu Title Colour"
-msgstr "Couleur du titre"
+msgstr "Kleur menu titel"
 
 #: app/views/admin/page.phtml:1205
 msgid "This is the text colour of the menu title"
-msgstr "Sélectionner la couleur du titre du menu"
+msgstr "Dit is de tekst kleur van de menu titel"
 
 #: app/views/admin/page.phtml:1218
 msgid "Menu Title Hover Colour"
-msgstr "Couleur du titre au survol"
+msgstr "Menu titel hover kleur"
 
 #: app/views/admin/page.phtml:1220
 msgid "This is the hover colour of the menu title"
-msgstr "Sélectionner la couleur du titre du menu au survol"
+msgstr "Dit is de hover kleur van de menu titel"
 
 #: app/views/admin/page.phtml:1235
 msgid "Menu Link Colour"
-msgstr "Couleur des liens"
+msgstr "Menu link kleur"
 
 #: app/views/admin/page.phtml:1237
 msgid "This is the text colour of the menu links"
-msgstr "Sélectionner la couleur des liens au survol"
+msgstr "Dit is de tekst kleur van de menu links"
 
 #: app/views/admin/page.phtml:1250
 msgid "Menu Link Hover Colour"
-msgstr "Couleur des liens au survol"
+msgstr "Menu link hover kleur"
 
 #: app/views/admin/page.phtml:1252
 msgid "This is the text hover colour of the menu links"
-msgstr "Sélectionner la couleur des liens au survol"
+msgstr "Dit is de tekst kleur van de menu hover links"
 
 #: app/views/admin/page.phtml:1268
 msgid "Current Page Link Colour"
-msgstr "Couleur du lien de la page courante"
+msgstr "Huidige pagina link kleur"
 
 #: app/views/admin/page.phtml:1270
 msgid "This is the text colour of the current page link"
-msgstr "Sélectionner la couleur du lien de la page courante"
+msgstr "Dit is de tekst kleur van de actieve pagina link"
 
 #: app/views/admin/page.phtml:1283
 msgid "Current Page Link Hover Colour"
@@ -736,155 +704,150 @@ msgstr ""
 
 #: app/views/admin/page.phtml:1302
 msgid "Style Settings"
-msgstr "Paramètres de style"
+msgstr "Stijl instellingen"
 
 #: app/views/admin/page.phtml:1309
 msgid "Font"
-msgstr "Typographie"
+msgstr "Lettertype"
 
 #: app/views/admin/page.phtml:1311
 msgid "Enter a font name below, if empty your default site font will be used"
 msgstr ""
-"Entrer le nom d'une typo ci-dessous, si laissé vide la typo par défaut sera "
-"utilisée"
+"Geef een lettertype naam in. Indien leeg wordt het standaard lettertype van "
+"de site gebruikt"
 
 #: app/views/admin/page.phtml:1322
 msgid "Font Size"
-msgstr "Taille de texte"
+msgstr "Lettertype afmeting"
 
 #: app/views/admin/page.phtml:1324
 msgid "Enter a font size in pixels below"
-msgstr "Entrer la taille du texte en px ci-dessous"
+msgstr "Geef de grotte van de lettertype in in pixels"
 
 #: app/views/admin/page.phtml:1339
 msgid "Click Button Font Size"
-msgstr "Taille du texte du bouton"
+msgstr "Klik knop lettertype afmeting"
 
 #: app/views/admin/page.phtml:1341
 msgid "Enter a click button font size in pixels below"
-msgstr "Entrer une taille de typo pour le bouton ci-dessous"
+msgstr "Voer de grootte van het lettertype voor de klik knop in in pixels"
 
 #: app/views/admin/page.phtml:1353
 msgid "Title Font Size"
-msgstr "Taille du titre"
+msgstr "Titel lettertype afmeting"
 
 #: app/views/admin/page.phtml:1355
 msgid "Enter a title font size in pixels below"
-msgstr "Entrer la taille du titre de menu en px ci-dessous"
+msgstr "Geef de afmeting in voor de lettertype van de titel in pixels"
 
 #: app/views/admin/page.phtml:1370
 msgid "Text Alignment"
-msgstr "Alignement du texte"
+msgstr "Tekst uitlijning"
 
 #: app/views/admin/page.phtml:1372
 msgid "Enter a text alignment option below"
-msgstr "Indiquer les options d'alignement du texte ci-dessous"
+msgstr "Kies een tekst uitlijning hieronder"
 
 #: app/views/admin/page.phtml:1384
 msgid "Centre"
-msgstr "Centre"
+msgstr "Midden"
 
 #: app/views/admin/page.phtml:1397
 msgid "Links Height"
-msgstr "Hauteur des liens"
+msgstr "Links hoogte"
 
 #: app/views/admin/page.phtml:1399
 msgid "Enter a link height size in pixels below"
-msgstr "Indiquer la hauteur des liens en px ci-dessous"
+msgstr "Geef de hoogte van de link in in pixels"
 
 #: app/views/admin/page.phtml:1414
 msgid ""
 "Setting the below two values to the same number will give you a fixed width "
 "effect"
-msgstr ""
-"Régler ces deux valeurs à l'identique va vous donner une largeur fixe du menu"
+msgstr "Als je de 2 waardes hieronder gelijk houdt krijg je een vaste breedte"
 
 #: app/views/admin/page.phtml:1424
 msgid "Minimum Width"
-msgstr "Largeur minimum"
+msgstr "Minimum breedte"
 
 #: app/views/admin/page.phtml:1426
 msgid "Enter a minimum menu width size in pixels below"
-msgstr "Indiquer une largeur minimum en px pour le menu"
+msgstr "Geef een minimum breedte in in pixels"
 
 #: app/views/admin/page.phtml:1438
 msgid "Maximum Width"
-msgstr "Largeur maximale"
+msgstr "Maximum breedte"
 
 #: app/views/admin/page.phtml:1440
 msgid "Enter a maximum menu width size in pixels below"
-msgstr "Indiquer une largeur maximale en px pour le menu"
+msgstr "Geef een maximum breedte in in pixels"
 
 #: app/views/admin/page.phtml:1455
 msgid "Animation Settings"
-msgstr "Paramètres d'animation"
+msgstr "Animatie instellingen"
 
 #: app/views/admin/page.phtml:1460
 msgid ""
 "Warning: The Push Animation requires you to place the following meta tag in "
 "your site header"
 msgstr ""
-"Attention : L'animation Push requière de placer le meta tag suivant dans le "
-"header de votre site"
+"Waarschuwing: Voor de push animatie moet je de volgende meta tag in je site "
+"header plaatsen"
 
 #: app/views/admin/page.phtml:1475
 msgid "Slide Animation"
-msgstr "Animation du menu"
+msgstr "Slide animatie"
 
 #: app/views/admin/page.phtml:1477
 msgid "Choose the type of animation applied to the menu"
-msgstr "Choisir le type d'animation à appliquer au menu"
+msgstr "Kies het type animatie dat moet worden gebruikt"
 
 #: app/views/admin/page.phtml:1484
 msgid "Overlay"
-msgstr ""
+msgstr "Overlay"
 
 #: app/views/admin/page.phtml:1489
-#, fuzzy
 msgid "Push"
-msgstr ""
-"Ceci est l'élément CSS du container que vous souhaitez pousser en utilisant "
-"l'animation \"Push\""
+msgstr "Push"
 
 #: app/views/admin/page.phtml:1497
 msgid "Page Wrappers CSS"
-msgstr "Container CSS de la page"
+msgstr "Pagina wrapper CSS"
 
 #: app/views/admin/page.phtml:1499
 msgid ""
 "This is the CSS of the wrapper you want to push when using the push animation"
 msgstr ""
-"Ceci est l'élément CSS du container que vous souhaitez pousser en utilisant "
-"l'animation \"Push\""
+"Dit is de CSS van de wrapper die je wilt pushen als je de push "
+"animatiegebruikt"
 
 #: app/views/admin/page.phtml:1513
 msgid "Animation Speed"
-msgstr "Vitesse d'animation"
+msgstr "Animatie snelheid"
 
 #: app/views/admin/page.phtml:1515
 msgid "Enter a speed in seconds below of the slide animation"
-msgstr "Indiquer la vitesse de l'animation en seconde ci-dessous"
+msgstr "Vul een snelheid in in seconden"
 
 #: app/views/admin/page.phtml:1522 app/views/admin/page.phtml:1536
 msgid "seconds"
-msgstr "secondes"
+msgstr "seconden"
 
 #: app/views/admin/page.phtml:1527
 msgid "Transition Speed"
-msgstr "Vitesse de transition"
+msgstr "Transitie snelheid"
 
 #: app/views/admin/page.phtml:1529
 msgid "Enter a speed in seconds below of the hover transition effect"
-msgstr "Indiquer la vitesse de la transition en seconde ci-dessous"
+msgstr "Geef een snelheid in in seconden"
 
 #: app/views/admin/page.phtml:1543
 msgid "Accordion Animation For Sub-Menus"
-msgstr "Animation accordéon pour les sous-menu"
+msgstr "Accordion animatie voor sub menus"
 
 #: app/views/admin/page.phtml:1545
 msgid "Tick to enable the accordion animation for sub-menu items"
-msgstr ""
-"Cocher pour activer l'animation accordéon pour les éléments de sous-menu"
+msgstr "Aanvinken als je de accordion animatie voor sub menus wil activeren"
 
 #: app/views/admin/page.phtml:1558
 msgid "Push button with Animation"
@@ -896,11 +859,11 @@ msgstr ""
 
 #: app/views/admin/page.phtml:1578
 msgid "Additional HTML Content Settings"
-msgstr "Paramètre de contenu HTML additionnel"
+msgstr "Extra HTML content entsellingen"
 
 #: app/views/admin/page.phtml:1585
 msgid "Additional HTML Content"
-msgstr "Contenu HTML additionnel"
+msgstr "Extra HTML content"
 
 #: app/views/admin/page.phtml:1587
 msgid ""
@@ -910,11 +873,11 @@ msgstr ""
 
 #: app/views/admin/page.phtml:1594
 msgid "Additional HTML Content Positioning"
-msgstr "Positionnement du contenu HTML additionnel"
+msgstr "Extra HTML content postionering"
 
 #: app/views/admin/page.phtml:1596
 msgid "Select where you would like the additional HTML content to appear"
-msgstr "Sélectionner où vous souhaitez faire apparaître le contenu"
+msgstr "Kies waar je de extra HTML content wilt tonen"
 
 #: app/views/admin/page.phtml:1618
 msgid "Custom Walker"
@@ -932,44 +895,82 @@ msgstr ""
 
 #: app/views/admin/page.phtml:1647
 msgid "Update Responsive Menu Options"
-msgstr "Sauvegarder les options de Responsive Menu"
+msgstr "Responsive menu opties bijwerken"
 
 #: app/views/admin/page.phtml:1654
 msgid "Export Options"
-msgstr "Exporter les options"
+msgstr "Export opties"
 
 #: app/views/admin/page.phtml:1673
 msgid "Import File"
-msgstr "Importer un fichier"
+msgstr "Import bestand"
 
 #: app/views/admin/page.phtml:1680
 msgid "Import Options"
-msgstr "Importer des options"
-
-#~ msgid "This currently only works on the first depth level"
-#~ msgstr "Ceci ne fonctionne que pour les éléments de niveau 1"
-
-#~ msgid ""
-#~ "Enter any additional HTML you may want below, useful for advertisement "
-#~ "banners etc."
-#~ msgstr ""
-#~ "Entrer n'importe quel contenu HTML additionnel que vous le souhaitez, "
-#~ "ceci est utile pour des bannières de publicité etc..."
+msgstr "Import opties"
 
 #~ msgid ""
 #~ "Use shortcode [responsive-menu] - currently this is only for those that "
 #~ "know about CSS customisation etc. and doesn't offer any additional "
 #~ "functionality"
 #~ msgstr ""
-#~ "Utilise le shortcode [responsive-menu] - ceci est a utiliser par ceux "
-#~ "aillant des connaissance à propos de la customisation du CSS et n'offre "
-#~ "aucune fonctionnalité additionnelle"
+#~ "Gebruik shortcode [responsive-menu] - momenteel is dit alleen voordegenen "
+#~ "die weten hoe CSS toe te passen en het geeft geen extra functionaliteit"
 
 #~ msgid "Menu Button Title"
-#~ msgstr "Titre du bouton de menu"
+#~ msgstr "Titel menu knop"
+
+#~ msgid "This is the title under the 3 lines of the menu button"
+#~ msgstr "Dit is de titel onder de 3 lijnen van de menu knop"
 
 #~ msgid "Click Menu Image"
-#~ msgstr "Image du bouton d'ouverture"
+#~ msgstr "Menu knop afbeelding"
+
+#~ msgid ""
+#~ "This is the click image button that replaces the 3 lines. If empty, the 3 "
+#~ "lines will be used"
+#~ msgstr ""
+#~ "Deze afbeelding vervangt de 3 lijnen knop. Laat leeg om de 3 lijnente "
+#~ "gebruiken"
+
+#~ msgid "Click Menu Image When Clicked"
+#~ msgstr "Actieve menu knop afbeelding"
+
+#~ msgid ""
+#~ "This is the click image button that replaces the 3 lines when clicked. If "
+#~ "empty, the 3 lines will be used"
+#~ msgstr ""
+#~ "Dit is de menu knop afbeelding die getoond wordt zodra erop wordtgeklikt. "
+#~ "Laat leeg om de 3 lijnen te tonen"
 
 #~ msgid "Location Settings"
-#~ msgstr "Paramètre de localisation"
+#~ msgstr "Locatie instellingen"
+
+#~ msgid ""
+#~ "This is the distance from the top of the page in px that the menu will be "
+#~ "displayed"
+#~ msgstr ""
+#~ "Dit is de afstand van de bovenzijde van de pagina in px waar het menu "
+#~ "wordt getoond"
+
+#~ msgid "This is the colour of the 3 lines and text for the menu button"
+#~ msgstr "Dit is de kleur van de 3 lijnen en de tekst voor de knop"
+
+#~ msgid ""
+#~ "Tick this if you would like the menu button to remain in the same place "
+#~ "when scrolling"
+#~ msgstr ""
+#~ "Aanvinken als je de menu knop op dezelfde plaats wilt laten staan bij het "
+#~ "scrollen"
+
+#~ msgid "Change click menu to an x on click"
+#~ msgstr "Verander klik menu in en x wanneer erop wordt geklikt"
+
+#~ msgid "This currently only works on the first depth level"
+#~ msgstr "Dit werkt momenteel alleen op eerste diepte niveau"
+
+#~ msgid ""
+#~ "Enter any additional HTML you may want below, useful for advertisement "
+#~ "banners etc."
+#~ msgstr ""
+#~ "Hieronder kun je HTML toevoegen, bijv. voor advertenties, banners etc."
