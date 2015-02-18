@@ -170,6 +170,10 @@ class RM_AdminModel extends RM_BaseModel {
          /* Add by MKDGS */
         $RMWalker = isset( $data['RMWalker'] ) ? $data['RMWalker'] : RM_Registry::get( 'defaults', 'RMWalker' );
 
+        /* Added in 2.4 */
+        
+        $RMUseTran = isset( $data['RMUseTran'] ) ? $data['RMUseTran'] : RM_Registry::get( 'defaults', 'RMUseTran' );
+        
         $optionsArray = array(
             
             // Filter Input Correctly
@@ -332,6 +336,10 @@ class RM_AdminModel extends RM_BaseModel {
             /* Add by Mkdgs */
             
             'RMWalker' => ( class_exists( $RMWalker ) ) ? $RMWalker : '',
+            
+            /* Added in 2.4 */
+            
+            'RMUseTran' => self::Filter( $RMUseTran ),
             
         );
 

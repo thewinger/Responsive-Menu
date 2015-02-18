@@ -222,7 +222,30 @@
                     </tr>
                 </table>
 
+                <h3><?php _e( 'Transient Caching', 'responsive-menu' ); ?></h3>
                 
+                <table>
+
+                    <tr>
+                        <td>
+                            <h4>
+                                <?php _e( 'Turn on transient caching', 'responsive-menu' ); ?>
+                            </h4> 
+                            <h5>
+                                <?php _e( 'Transient caching will save you ~80% on load times, however please note that this will break active links etc.', 'responsive-menu' ); ?>
+                            </h5> 
+                            
+                            <input 
+                                type="checkbox" 
+                                name="RMUseTran" 
+                                id="RMUseTran"
+                                value="usetransient"
+                                <?php echo isset( $data['RMUseTran'] ) && $data['RMUseTran'] == 'usetransient' ? ' checked="checked" ' : ''; ?>
+                                />
+                                                        
+                        </td>
+                    </tr>
+                </table>
                 
                 <h3><?php _e( 'Shortcode Support', 'responsive-menu' ); ?></h3>
                 
