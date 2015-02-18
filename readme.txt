@@ -132,7 +132,7 @@ Alternatively:
 
 == Changelog ==
 
-= 2.3 (12th Feb 2015) =
+= 2.3 (16th Feb 2015) =
 
 * Added ability to set custom click menu trigger
 * Added ability to set custom walker function - Thanks to Mickael Desgranges for this 
