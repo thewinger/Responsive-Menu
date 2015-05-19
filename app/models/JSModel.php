@@ -43,7 +43,7 @@ class RM_JSModel extends RM_BaseModel {
         $setHeight = $options['RMPos'] == 'fixed' ? '' : " \$RMjQuery( '#responsive-menu' ).css( 'height', \$RMjQuery( document ).height() ); ";
         $breakpoint = empty($options['RMBreak']) ? "600" : $options['RMBreak'];
         
-        $RMPushCSS = empty($options['RMPushCSS']) ? "" : $options['RMPushCSS'];
+        $RMPushCSS = empty( $options['RMPushCSS'] ) ? "" : $options['RMPushCSS'];
 
         $slideOpen = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( 'body' ).addClass( 'RMPushOpen' ); " : '';
         $slideRemove = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( 'body' ).removeClass( 'RMPushOpen' ); " : '';
@@ -76,6 +76,12 @@ class RM_JSModel extends RM_BaseModel {
         $sideSlideOpen = $side == 'right' && empty( $slideOpen ) ? " \$RMjQuery( 'body' ).addClass( 'RMPushOpen' ); " : '';
         $sideSlideRemove =  $side == 'right' && empty( $slideRemove ) ? " \$RMjQuery( 'body' ).removeClass( 'RMPushOpen' ); " : '';
         
+        /* Added 2.3 */
+        
+        $trigger = isset( $options['RMTrigger'] ) ? $options['RMTrigger'] : RM_Registry::get( 'defaults', 'RMTrigger' );
+        
+        $speed = $options['RMAnimSpd'] * 1000;
+        
 /*
 |--------------------------------------------------------------------------
 | Slide Push Animation
@@ -88,7 +94,7 @@ class RM_JSModel extends RM_BaseModel {
         
 $slideOver = null;
       
-if( $options['RMAnim'] == 'push' && !empty( $options['RMPushCSS'] ) ) :
+if( $options['RMAnim'] == 'push' ) :
     
     if( $options['RMSide'] == 'top' || $options['RMSide'] == 'bottom' ) :
    
@@ -96,31 +102,68 @@ if( $options['RMAnim'] == 'push' && !empty( $options['RMPushCSS'] ) ) :
         
             var MenuHeight = \$RMjQuery( '#responsive-menu' ).css( 'height' );
         
-            \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"{$pos}\" + MenuHeight }, 500, 'linear' );
+            \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"{$pos}\" + MenuHeight }, {$speed}, 'linear' );
 
 
         ";
+            
+        if( $options['RMPushBtn'] ) :
+
+            $slideOver .= "
+                
+                \$RMjQuery( '#click-menu' ).animate( { $pushSide: \"{$pos}\" + MenuHeight }, {$speed}, 'linear' );
+                \$RMjQuery( '#click-menu' ).css( 'right', 'auto' );
+                
+                ";
+
+        endif;
         
     else :
         
         $slideOver = "
         
-            \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"{$pos}{$width}%\" }, 500, 'linear' );
+            \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"{$pos}{$width}%\" }, {$speed}, 'linear' );
 
 
         ";
+        
+        if( $options['RMPushBtn'] ) :
+
+            $slideOver .= "
+
+                \$RMjQuery( '#click-menu' ).animate( { $pushSide: \"{$pos}{$width}%\" }, {$speed}, 'linear' );
+                \$RMjQuery( '#click-menu' ).css( 'right', 'auto' );
+
+            ";
+
+        endif;
+        
         
     endif;
 
 endif;
     
-        $slideOverCss = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).addClass( 'RMPushSlide' ); " : '';
+$slideOverCss = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).addClass( 'RMPushSlide' ); " : '';
 
-        $slideBack = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"0\" }, 500, 'linear' ); " : '';
+$slideBack = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"0\" }, {$speed}, 'linear' ); " : '';
         
-        $slideOverCssRemove = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).removeClass( 'RMPushSlide' ); " : '';
+if( $options['RMPushBtn'] && $options['RMAnim'] == 'push' ) :
 
-        $speed = empty( $options['RMAnimSpd'] ) ? 500 : $options['RMAnimSpd'] * 1000;
+    $slideBack .= "
+
+        \$RMjQuery( '#click-menu' ).animate( { $pushSide: \"{$options['RMRight']}\" }, {$speed}, 'linear', function() {
+            
+            \$RMjQuery( '#click-menu' ).removeAttr( 'style' );
+                
+        });
+        
+    ";
+
+endif;
+        
+$slideOverCssRemove = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).removeClass( 'RMPushSlide' ); " : '';
+
+        
 
 /*
 |--------------------------------------------------------------------------
@@ -161,32 +204,33 @@ endif;
 |
 */
    
-$downArrow = '&#9660;';
-$upArrow = '&#9650;';
+$activeArrow = $options['RMArImgA'] ? '<img src="' . $options['RMArImgA'] . '" />' : json_decode( $options['RMArShpA'] );
+$inactiveArrow = $options['RMArImgI'] ? '<img src="' . $options['RMArImgI'] . '" />' : json_decode( $options['RMArShpI'] );
+
 
 if ( !$options['RMExpand'] ) :
 
-    $clickedLink = '<span class=\"appendLink\">' . $downArrow . '</span>';  
-    $clickLink = '<span class=\"appendLink\">' . $downArrow . '</span>';  
+    $clickedLink = '<span class=\"appendLink\">' . $inactiveArrow . '</span>';  
+    $clickLink = '<span class=\"appendLink\">' . $inactiveArrow . '</span>';  
 
 else :
 
-    $clickedLink = '<span class=\"appendLink rm-append-active\">' . $upArrow . '</span>';
-    $clickLink = '<span class=\"appendLink rm-append-active\">' . $upArrow . '</span>'; 
+    $clickedLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>';
+    $clickLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>'; 
 
 endif;
 
 if( $options['RMExpandPar'] ) :
 
-    $clickedLink = '<span class=\"appendLink rm-append-active\">' . $upArrow . '</span>';
-    $clickLink = '<span class=\"appendLink\">' . $downArrow . '</span>'; 
+    $clickedLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>';
+    $clickLink = '<span class=\"appendLink\">' . $inactiveArrow . '</span>'; 
 
 endif;
 
 if( $options['RMExpandPar'] && $options['RMExpand'] ) :
 
-    $clickedLink = '<span class=\"appendLink rm-append-active\">' . $upArrow . '</span>';
-    $clickLink = '<span class=\"appendLink rm-append-active\">' . $upArrow . '</span>'; 
+    $clickedLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>';
+    $clickLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>'; 
 
 endif;
     
@@ -278,7 +322,7 @@ if( $options['RMCliToClo'] ) :
 
         \$RMjQuery( document ).on( 'click tap', function( e ) { 
         
-            if( !\$RMjQuery( e.target ).closest( '#responsive-menu, #click-menu' ).length ) { 
+            if( !\$RMjQuery( e.target ).closest( '#responsive-menu, {$trigger}' ).length ) { 
             
                 closeRM(); 
                 
@@ -305,7 +349,7 @@ $js .= "
     
     var isOpen = false;
 
-    \$RMjQuery( document ).on( 'click', '#click-menu', function() {
+    \$RMjQuery( document ).on( 'click', '{$trigger}', function() {
 
         $setHeight
 
@@ -465,10 +509,12 @@ if( $options['RMAccordion'] && $options['RMAccordion'] == 'accordion' ) :
 
     if( \$RMjQuery( this ).closest( 'ul' ).is( '.responsive-menu' ) ) {
 
-        \$RMjQuery( '.responsive-menu ul' ).slideUp();
+        \$RMjQuery( '.accordion-open' ).removeClass( 'accordion-open' );
         
-        \$RMjQuery( '.appendLink' ).removeClass( 'rm-append-active' );
-        \$RMjQuery( '.appendLink' ).html( '{$downArrow}' );
+        \$RMjQuery( this ).parent( 'li' ).addClass( 'accordion-open' );
+
+        \$RMjQuery( '.responsive-menu li:not( .accordion-open ) > ul' ).slideUp();
+
             
     }
 
@@ -497,8 +543,8 @@ $js .= "
         $accordion
     
         \$RMjQuery( this ).nextAll( '#responsive-menu ul ul' ).slideToggle(); 
-
-        \$RMjQuery( this ).html( \$RMjQuery( this ).hasClass( 'rm-append-active' ) ? '{$downArrow}' : '{$upArrow}' );
+          
+        \$RMjQuery( this ).html( \$RMjQuery( this ).hasClass( 'rm-append-active' ) ? '{$inactiveArrow}' : '{$activeArrow}' );
         \$RMjQuery( this ).toggleClass( 'rm-append-active' );
 
         $setHeight
@@ -511,7 +557,7 @@ $js .= "
             
         \$RMjQuery( this ).nextAll( '#responsive-menu ul ul' ).slideToggle(); 
 
-        \$RMjQuery( this ).siblings( '.appendLink' ).html( \$RMjQuery( this ).hasClass( 'rm-append-active' ) ? '{$downArrow}' : '{$upArrow}' );
+        \$RMjQuery( this ).siblings( '.appendLink' ).html( \$RMjQuery( this ).hasClass( 'rm-append-active' ) ? '{$inactiveArrow}' : '{$activeArrow}' );
         \$RMjQuery( this ).toggleClass( 'rm-append-active' );
         
         $setHeight

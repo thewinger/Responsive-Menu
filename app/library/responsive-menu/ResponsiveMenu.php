@@ -15,13 +15,13 @@ class ResponsiveMenu {
     public function __construct() {
         
         
-        if( !get_option( 'RMVer' ) )
+        if( !get_option( 'RMVer' ) ) :
                 add_option( 'RMVer', RM_Registry::get( 'config', 'current_version' ) );
-                
+        endif;
         
-        if( !get_option( 'RMOptions' ) )
+        if( !get_option( 'RMOptions' ) ) :
             add_option( 'RMOptions', RM_Registry::get( 'defaults' ) );
-        
+        endif;
         
         RM_Registry::set( 'options', get_option( 'RMOptions' ) );
         RM_Registry::set( 'version', get_option( 'RMVer' ) );
@@ -88,6 +88,35 @@ class ResponsiveMenu {
             return $options[$option];
         
         return RM_Registry::get( 'defaults', $option );
+        
+    }
+    
+    /**
+     * Function to return if there are created menus in the system
+     *
+     * @return bool
+     * @added 2.3
+     */
+    
+    static function hasMenus() {
+        
+        if( count( get_terms( 'nav_menu' ) ) > 0 )
+            return true;
+        
+        return false;
+        
+    }
+    
+    /**
+     * Function to return currently created menus in the system
+     *
+     * @return object
+     * @added 2.3
+     */
+    
+    static function getMenus() {
+        
+        return get_terms( 'nav_menu' );
         
     }
     

@@ -16,11 +16,17 @@ class RM_AdminController extends RM_BaseController {
         // Check that we are in the admin area
         if( is_admin() ) : 
             
-        
             add_filter( 'plugin_action_links', array( 'RM_AdminController', 'addSettingsLink' ), 10, 2 );
             add_action( 'admin_menu', array( 'RM_AdminController', 'addMenus' ) );
         
-        
+            // Clear Transients on Saving/Updating Menus/Posts 
+            // Added 2.4
+            
+            if( ResponsiveMenu::getOption( 'RMUseTran' ) ) :
+                add_action( 'wp_update_nav_menu', array( 'RM_Transient', 'clearTransientMenus' ) );
+                add_action( 'save_post', array( 'RM_Transient', 'clearTransientMenus' ) );
+            endif;
+            
             // Specifically for Responsive Menu Page
             if( isset( $_GET['page'] ) && $_GET['page'] == 'responsive-menu' ) :
 

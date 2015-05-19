@@ -107,7 +107,13 @@ class RM_CSSModel extends RM_BaseModel {
         
         $lineHeight = empty( $options['RMLineHeight'] ) ? 6 : $options['RMLineHeight'];
         $lineWidth = empty( $options['RMLineWidth'] ) ? 33 : $options['RMLineWidth'];
-        $lineMargin = empty( $options['RMLineMargin'] ) ? 6 : $options['RMLineMargin'];
+        $lineMargin = empty( $options['RMLineMargin'] ) ? 6 : $options['RMLineMargin'];        
+        $clickMenuHeight = ( $lineMargin * 2 ) + ( $lineHeight * 3 );
+        
+        /* Added 2.3 */
+        
+        $curBkgHov = empty( $options['RMCurBkgHov'] ) ? $mainBkg : $options['RMCurBkgHov'];
+        $curColHov = empty( $options['RMCurColHov'] ) ? $txtCol : $options['RMCurColHov'];
         
  /*
 |--------------------------------------------------------------------------
@@ -146,14 +152,6 @@ $css .= $options['RMExternal'] ? '' : '<style>';
                 -moz-box-sizing: content-box{$important}
                 -webkit-box-sizing: content-box{$important}
                 -o-box-sizing: content-box{$important}
-            }
-
-            #click-menu #RMX {
-
-                display: none;
-                font-size: 24px;
-                line-height: 30px;
-                color: $clickCol{$important}
             }
 
             .RMPushOpen
@@ -291,13 +289,24 @@ $css .= $options['RMExternal'] ? '' : '<style>';
                 margin: 0px{$important}
             }
                         
+            #responsive-menu .responsive-menu li.current-menu-item > a,
+            #responsive-menu .responsive-menu li.current-menu-item > .appendLink,
             #responsive-menu .responsive-menu li.current_page_item > a,
             #responsive-menu .responsive-menu li.current_page_item > .appendLink
             {
                 background: $curBkg{$important}
                 color: $curCol{$important}
-            }
-                    
+            } 
+                                            
+            #responsive-menu .responsive-menu li.current-menu-item > a:hover,
+            #responsive-menu .responsive-menu li.current-menu-item > .appendLink:hover,
+            #responsive-menu .responsive-menu li.current_page_item > a:hover,
+            #responsive-menu .responsive-menu li.current_page_item > .appendLink:hover
+            {
+                background: $curBkgHov{$important}
+                color: $curColHov{$important}
+            } 
+                                            
             #responsive-menu  .responsive-menu ul
             {
                 margin-left: 0px{$important}
@@ -340,7 +349,6 @@ $css .= $options['RMExternal'] ? '' : '<style>';
                 color: $clickCol;
                 $clickBkg
                 padding: 5px;
-                border-radius: 5px;
                 z-index: 9999;
             }
 
@@ -416,10 +424,19 @@ $css .= $options['RMExternal'] ? '' : '<style>';
                 text-decoration: none{$important}
             }
             
+            #click-menu #RMX {
+
+                display: none;
+                font-size: 24px;
+                line-height: {$clickMenuHeight}px{$important}
+                height: {$clickMenuHeight}px{$important}
+                color: $clickCol{$important}
+            }
+            
             #click-menu .threeLines
             {
                 width: {$lineWidth}px{$important}
-                height: 33px{$important}
+                height: {$clickMenuHeight}px{$important}
                 margin: auto{$important}
             }
 
@@ -429,6 +446,11 @@ $css .= $options['RMExternal'] ? '' : '<style>';
                 margin-bottom: {$lineMargin}px{$important}
                 background: $clickCol{$important}
                 width: 100%{$important}
+            }
+            
+            #click-menu .threeLines .line.last
+            {
+                margin-bottom: 0px{$important}
             }
 
             @media only screen and ( min-width : 0px ) and ( max-width : {$breakpoint}px ) { 

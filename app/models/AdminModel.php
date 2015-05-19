@@ -77,7 +77,7 @@ class RM_AdminModel extends RM_BaseModel {
         
         $RMCurCol = !empty($data['RMCurCol']) ? $data['RMCurCol'] : RM_Registry::get( 'defaults', 'RMCurCol' );
  
-        $RMAnimSpd = $data['RMAnimSpd'] ? $data['RMAnimSpd'] : RM_Registry::get( 'defaults', 'RMAnimSpd' );
+        $RMAnimSpd = $data['RMAnimSpd'] !== false ? $data['RMAnimSpd'] : RM_Registry::get( 'defaults', 'RMAnimSpd' );
 
         /* Added in 1.7 */
         
@@ -148,9 +148,31 @@ class RM_AdminModel extends RM_BaseModel {
         $RMClickImgClicked = isset( $data['RMClickImgClicked'] ) ? $data['RMClickImgClicked'] : RM_Registry::get( 'defaults', 'RMClickImgClicked' );
         
         $RMAccordion = isset( $data['RMAccordion'] ) ? $data['RMAccordion'] : RM_Registry::get( 'defaults', 'RMAccordion' );
-       
-        /* Add by MKDGS */
+        
+        $RMArShpA = isset( $data['RMArShpA'] ) ? $data['RMArShpA'] : RM_Registry::get( 'defaults', 'RMArShpA' );
+        
+        $RMArShpI = isset( $data['RMArShpI'] ) ? $data['RMArShpI'] : RM_Registry::get( 'defaults', 'RMArShpI' );
+        
+        $RMArImgA = isset( $data['RMArImgA'] ) ? $data['RMArImgA'] : RM_Registry::get( 'defaults', 'RMArImgA' );
+        
+        $RMArImgI = isset( $data['RMArImgI'] ) ? $data['RMArImgI'] : RM_Registry::get( 'defaults', 'RMArImgI' );
+        
+        /* Added in 2.3 */
+        
+        $RMTrigger = isset( $data['RMTrigger'] ) && !empty( $data['RMTrigger'] ) ? $data['RMTrigger'] : RM_Registry::get( 'defaults', 'RMTrigger' );  
+        
+        $RMPushBtn = isset( $data['RMPushBtn'] ) ? $data['RMPushBtn'] : RM_Registry::get( 'defaults', 'RMPushBtn' );  
+        
+        $RMCurBkgHov = !empty($data['RMCurBkgHov']) ? $data['RMCurBkgHov'] : RM_Registry::get( 'defaults', 'RMCurBkgHov' );
+        
+        $RMCurColHov = !empty($data['RMCurColHov']) ? $data['RMCurColHov'] : RM_Registry::get( 'defaults', 'RMCurColHov' );
+        
+         /* Add by MKDGS */
         $RMWalker = isset( $data['RMWalker'] ) ? $data['RMWalker'] : RM_Registry::get( 'defaults', 'RMWalker' );
+
+        /* Added in 2.4 */
+        
+        $RMUseTran = isset( $data['RMUseTran'] ) ? $data['RMUseTran'] : RM_Registry::get( 'defaults', 'RMUseTran' );
         
         $optionsArray = array(
             
@@ -274,6 +296,7 @@ class RM_AdminModel extends RM_BaseModel {
             
             'RMHtmlLoc' => self::Filter( $RMHtmlLoc ),
             
+            
             /* Added in 2.1 */
             
             'RMShortcode' => self::Filter( $RMShortcode ),
@@ -291,14 +314,43 @@ class RM_AdminModel extends RM_BaseModel {
             
             'RMAccordion' => self::Filter( $RMAccordion ),
             
+            'RMArShpA' => json_encode( $RMArShpA ),
+            
+            'RMArShpI' => json_encode( $RMArShpI ),
+            
+            'RMArImgA' => self::Filter( $RMArImgA ),
+            
+            'RMArImgI' => self::Filter( $RMArImgI ),
+            
+            
+            /* Added in 2.3 */
+            
+            'RMTrigger' => self::Filter( $RMTrigger ),
+            
+            'RMPushBtn' => self::Filter( $RMPushBtn ),
+            
+            'RMCurBkgHov' => self::Filter( $RMCurBkgHov ),
+            
+            'RMCurColHov' => self::Filter( $RMCurColHov ),
+
             /* Add by Mkdgs */
-            'RMWalker' => ( class_exists($RMWalker) ) ? $RMWalker : ''
+            
+            'RMWalker' => ( class_exists( $RMWalker ) ) ? $RMWalker : '',
+            
+            /* Added in 2.4 */
+            
+            'RMUseTran' => self::Filter( $RMUseTran ),
+            
         );
 
         // Update Submitted Options 
         
         update_option( 'RMOptions', $optionsArray );
-            
+        
+        // Clear Transient Menus
+        
+        RM_Transient::clearTransientMenus();
+        
         // And save the status
 
         RM_Status::set( 'updated', __( 'You have successfully updated the Responsive Menu options', 'responsive-menu' ) );

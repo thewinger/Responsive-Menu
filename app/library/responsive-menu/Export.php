@@ -12,6 +12,7 @@ class RM_Export {
     
     static function export() {
         
+        if( !is_admin() ) exit();
         
         $fileName = RM_Registry::get( 'config', 'plugin_base_dir' ) . '/public/export/export.xml';
         
@@ -37,7 +38,7 @@ class RM_Export {
         fwrite( $file, $xml );
         fclose( $file );
         
-        $link = RM_Registry::get( 'config', 'plugin_base_uri' ) . '/public/export/export.xml';
+        $link = RM_Registry::get( 'config', 'plugin_base_uri' ) . 'public/export/export.xml';
         
         RM_Status::set( 'updated', '<a href="' . $link . '">' . __( 'You can download your exported file by clicking here', 'responsive-menu' ) . '</a>' );
         

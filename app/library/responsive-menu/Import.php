@@ -11,7 +11,7 @@ class RM_Import {
     
     static function getData( $file ) {
     
-        
+        if( !is_admin() ) exit();
         
         if( !$file['tmp_name'] )
             return RM_Status::set( 'error', __( 'No Import File Attached', 'responsive-menu' ) );

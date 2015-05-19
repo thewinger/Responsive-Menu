@@ -14,10 +14,10 @@
 $config = array( 
     
     
-    'current_version' => 2.2,
+    'current_version' => 2.4,
     
     
-    'is_beta' => true,
+    'is_beta' => false,
     
     
     'plugins_dir' => plugin_dir_path( __FILE__ ),
@@ -265,6 +265,38 @@ $defaults = array(
     
     'RMAccordion' => false,
     
+    
+    'RMArShpA' => json_encode( '&#x25B2;' ),
+    
+    
+    'RMArShpI' => json_encode( '&#x25BC;' ),
+    
+    
+    'RMArImgA' => false,
+    
+    
+    'RMArImgI' => false,
+    
+    
+    /* Added in 2.3 */
+    
+    'RMTrigger' => '#click-menu',
+ 
+    
+    'RMPushBtn' => false,
+    
+    
+    'RMCurBkgHov' => '#43494C',
+    
+    
+    'RMCurColHov' => '#FFFFFF',
+    
+    
+    'RMWalker' => null,
+    
+    /* Added in 2.4 */
+    
+    'RMUseTran' => null,
     
 );
 
