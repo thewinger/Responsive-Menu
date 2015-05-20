@@ -5,62 +5,50 @@ class RM_Transient {
     /**
      * Function to get named cached transient menu
      *
-     * @param  string  $name
+     * @param  array  $options 
      * @return string
      * @added 2.3
      * @edited 2.4 - Added option to use transient caching
+     * @edited 2.5 - change Mkdgs: first argument is the entire array of options
      */
-    
-    static function getTransientMenu( $name ) {
-
-        $Transient = ResponsiveMenu::getOption( 'RMUseTran' );
-
-        if( $Transient ) :
-            
+    static function getTransientMenu($options) {
+        $Transient = ResponsiveMenu::getOption('RMUseTran');
+        $cachedMenu = false;
+        
+        if ($Transient) :
             $cachedKey = $name . '_' . get_current_blog_id();
-            $cachedMenu = get_transient( $cachedKey );
+            $cachedMenu = get_transient($cachedKey);
             
-        else :
-            
-            $cachedMenu = false;
-        
-        endif;
-
-        if( $cachedMenu === false ) :
-
-            $cachedMenu = self::createTransientMenu( $name );
-
-            if( $Transient )
-                set_transient( $cachedKey, $cachedMenu );
-        
         endif;
         
+        if ($cachedMenu === false) :
+            $cachedMenu = self::createTransientMenu($options);
+            if ($Transient)
+                set_transient($cachedKey, $cachedMenu);
+
+        endif;
+
         return $cachedMenu;
-        
     }
     
-     /**
+    /**
      * Function to create named cached transient menu
      *
-     * @param  string  $name
+     * @param  array  $options 
      * @return array
      * @added 2.3
+     * @edited 2.5 - change Mkdgs: first argument is the entire array of options
      */
-    
-    static function createTransientMenu( $name ) {
-        
-        $walker = ResponsiveMenu::getOption( 'RMWalker' );
-        
-        $cachedMenu = wp_nav_menu( array(
-                'menu' => $name,
-                'menu_class' => 'responsive-menu',
-                'walker' => ( !empty( $walker ) ) ? new $walker : '', // Add by Mkdgs
-                'echo' => false 
-                )
-            );
-        
+    static function createTransientMenu($options) {       
+        $menu_options = array(
+            'theme_location' => $options['RMThemeLocation'], 
+            'menu' => $options['RM'],
+            'menu_class' => 'responsive-menu',
+            'walker' => (!empty($options['RMWalker']) ) ? new $options['RMWalker'] : '', // Add by Mkdgs
+            'echo' => false
+        );   
+        $cachedMenu = wp_nav_menu($menu_options);
         return $cachedMenu;
-        
     }
     
     /**
