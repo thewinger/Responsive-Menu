@@ -174,6 +174,10 @@ class RM_AdminModel extends RM_BaseModel {
         
         $RMUseTran = isset( $data['RMUseTran'] ) ? $data['RMUseTran'] : RM_Registry::get( 'defaults', 'RMUseTran' );
         
+         /* Added in 2.5 Mkdgs */
+        
+        $RMThemeLocation = isset( $data['RMThemeLocation'] ) ? $data['RMThemeLocation'] : RM_Registry::get( 'defaults', 'RMThemeLocation' );
+        
         $optionsArray = array(
             
             // Filter Input Correctly
@@ -340,6 +344,10 @@ class RM_AdminModel extends RM_BaseModel {
             /* Added in 2.4 */
             
             'RMUseTran' => self::Filter( $RMUseTran ),
+            
+            /* Added in 2.5 Mkdgs */          
+            
+            'RMThemeLocation' => self::Filter( $RMThemeLocation ),
             
         );
 
