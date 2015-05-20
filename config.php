@@ -11,32 +11,14 @@
 */
 
 $config = array( 
-    
-    
     'current_version' => 2.5,
-    
-    
     'is_beta' => false,
-    
-    
     'plugins_dir' => plugin_dir_path( dirname( __FILE__ ).'/app' ), 
-        
-    
     'plugins_base_uri' => plugin_dir_url( dirname( __FILE__ ).'/app' ),
-    
-    
     'plugin_base_dir' => dirname( plugin_dir_path( __FILE__ ).'/app' ),
-    
-    
     'plugin_base_uri' => plugin_dir_url( dirname( __FILE__ ).'/app' ) ,
-    
-    
-    'plugin_data_uri' => plugin_dir_url( dirname( dirname( __FILE__ ) ) ) . 'responsive-menu-data/',
-    
-    
-    'plugin_data_dir' => dirname( dirname( plugin_dir_path( __FILE__ ) ) ) . '/responsive-menu-data/',
-    
-    
+    'plugin_data_uri' => plugin_dir_url( dirname( __FILE__ )  ) . 'responsive-menu-data/',
+    'plugin_data_dir' =>  plugin_dir_path( dirname( __FILE__ )) . '/responsive-menu-data/',
 );
 
 
