@@ -14,7 +14,7 @@
 $config = array( 
     
     
-    'current_version' => 2.4,
+    'current_version' => 2.5,
     
     
     'is_beta' => false,
@@ -293,6 +293,10 @@ $defaults = array(
     
     
     'RMWalker' => null,
+    
+     /* Added in 2.4 */
+    
+    'RMUseTran' => null,
     
      /* Added in 2.5 Mkdgs */
      
