@@ -294,6 +294,10 @@ $defaults = array(
     
     'RMWalker' => null,
     
+     /* Added in 2.5 Mkdgs */
+     
+    'RMThemeLocation' => null,
+    
 );
 
 
