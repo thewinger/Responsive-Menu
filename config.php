@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 
 /*
 |--------------------------------------------------------------------------
@@ -12,32 +11,14 @@
 */
 
 $config = array( 
-    
-    
-    'current_version' => 2.4,
-    
-    
+    'current_version' => 2.5,
     'is_beta' => false,
-    
-    
-    'plugins_dir' => plugin_dir_path( __FILE__ ),
-        
-    
-    'plugins_base_uri' => plugin_dir_url( dirname( __FILE__ ) ),
-    
-    
-    'plugin_base_dir' => dirname( plugin_dir_path( __FILE__ ) ),
-    
-    
-    'plugin_base_uri' => plugin_dir_url( dirname( __FILE__ ) ),
-    
-    
-    'plugin_data_uri' => plugin_dir_url( dirname( dirname( __FILE__ ) ) ) . 'responsive-menu-data/',
-    
-    
-    'plugin_data_dir' => dirname( dirname( plugin_dir_path( __FILE__ ) ) ) . '/responsive-menu-data/',
-    
-    
+    'plugins_dir' => plugin_dir_path( dirname( __FILE__ ).'/app' ), 
+    'plugins_base_uri' => plugin_dir_url( dirname( __FILE__ ).'/app' ),
+    'plugin_base_dir' => dirname( plugin_dir_path( __FILE__ ).'/app' ),
+    'plugin_base_uri' => plugin_dir_url( dirname( __FILE__ ).'/app' ) ,
+    'plugin_data_uri' => plugin_dir_url( dirname( __FILE__ )  ) . 'responsive-menu-data/',
+    'plugin_data_dir' =>  plugin_dir_path( dirname( __FILE__ )) . '/responsive-menu-data/',
 );
 
 
@@ -293,6 +274,14 @@ $defaults = array(
     
     
     'RMWalker' => null,
+    
+         /* Added in 2.4 */
+    
+    'RMUseTran' => null,
+    
+     /* Added in 2.5 Mkdgs*/
+    
+    'RMThemeLocation' => null,
     
 );
 

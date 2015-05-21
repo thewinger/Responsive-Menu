@@ -578,8 +578,7 @@
 
                             <?php if( ResponsiveMenu::hasMenus() ) : ?>
 
-                                <select name="RM">
-
+                                <select name="RM">                                        
                                     <?php foreach( ResponsiveMenu::getMenus() as $menu ) : ?>
 
                                         <option 
@@ -588,7 +587,14 @@
                                             <?php echo $menu->name; ?>
                                         </option>
 
-                                <?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                        
+                                    <option 
+                                            value=""
+                                            <?php echo ( empty($data['RM'])  )? 'selected="selected"' : ''; ?>  
+                                            >
+                                            <?php echo _e( 'none, i use Theme Location', 'responsive-menu' ); ?>
+                                    </option>
 
                             </select>
 
@@ -597,6 +603,39 @@
                                 <span style="color: red;"><?php _e( "You haven't set up any site menus yet", "responsive-menu" ); ?>.</span>
 
                             <?php endif; ?>  
+                                
+                            <?php // Choose Theme Location Menu add by mkdgs ?>   
+                            <h4><?php _e('Choose Theme Location Menu To Responsify', 'responsive-menu' ); ?></h4> 
+
+                            <h5><?php _e('The menu assigned to this theme location (registered with register_nav_menu) will used for displaying the responsive menu (usefull if you use a plugin like polylang)', 'responsive-menu' ); ?>.</h5>
+
+                            <?php if( $MenusLocations = ResponsiveMenu::getMenusLocations() ) : ?>
+
+                                <select name="RMThemeLocation">                                        
+                                    <?php foreach( $MenusLocations as $location ) : ?>
+
+                                        <option 
+                                            value="<?php echo $location->location; ?>"
+                                            <?php echo $location->location == $data['RMThemeLocation'] ? 'selected="selected">' : '>'; ?>
+                                            <?php echo $location->location; ?>
+                                        </option>
+
+                                    <?php endforeach; ?>
+                                        
+                                    <option 
+                                            value=""
+                                            <?php echo ( empty($data['RMThemeLocation'])  )? 'selected="selected"' : ''; ?>  
+                                            >
+                                            <?php echo _e( 'none, i use Menu name', 'responsive-menu' ); ?>
+                                    </option>
+
+                            </select>
+
+                            <?php else : ?>
+
+                                <span style="color: red;"><?php _e( "You haven't set up any menus location yet", "responsive-menu" ); ?>.</span>
+
+                            <?php endif; ?>
                                 
                         </td>
                         <td>
@@ -1711,5 +1750,4 @@
                     </table>
                 
             </form>
-
         </div>
