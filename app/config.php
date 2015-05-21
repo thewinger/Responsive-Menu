@@ -15,10 +15,7 @@ $config = array(
     
     
     'current_version' => 2.5,
-    
-    
-    'is_beta' => false,
-    
+   
     
     'plugins_dir' => plugin_dir_path( __FILE__ ),
         

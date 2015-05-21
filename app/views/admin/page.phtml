@@ -75,12 +75,7 @@
                 background: white;
                 box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
             }
-            
-            #RMVersion.beta
-            {
-                border-color: orange;
-            }
-            
+
             .note
             {
                 padding: 25px 0px 0px 0px;
@@ -155,10 +150,8 @@
 
         <div class="wrap">
 
-            <div id="RMVersion" <?php echo RM_Registry::get( 'config', 'is_beta' ) ? 'class="beta"' : ''; ?>>
-                <?php _e( 'Version' ); ?> <?php echo RM_Registry::get( 'config', 'current_version' ); ?> 
-                <?php echo RM_Registry::get( 'config', 'is_beta' ) ? 'Beta' : ''; ?>
-                
+            <div id="RMVersion">
+                <?php _e( 'Version' ); ?> <?php echo RM_Registry::get( 'config', 'current_version' ); ?>                 
             </div>
           
             <form action="" method="post" enctype="multipart/form-data">
