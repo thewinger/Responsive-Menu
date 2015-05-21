@@ -11,13 +11,13 @@ class RM_Transient {
      * @edited 2.4 - Added option to use transient caching
      */
     
-    static function getTransientMenu( $name ) {
+    static function getTransientMenu( $data ) {
 
         $Transient = ResponsiveMenu::getOption( 'RMUseTran' );
 
         if( $Transient ) :
             
-            $cachedKey = $name . '_' . get_current_blog_id();
+            $cachedKey = $data['RM'] . '_' . get_current_blog_id();
             $cachedMenu = get_transient( $cachedKey );
             
         else :
@@ -28,7 +28,7 @@ class RM_Transient {
 
         if( $cachedMenu === false ) :
 
-            $cachedMenu = self::createTransientMenu( $name );
+            $cachedMenu = self::createTransientMenu( $data );
 
             if( $Transient )
                 set_transient( $cachedKey, $cachedMenu );
@@ -47,16 +47,13 @@ class RM_Transient {
      * @added 2.3
      */
     
-    static function createTransientMenu( $name ) {
-        
-        $walker = ResponsiveMenu::getOption( 'RMWalker' );
-        $depth = ResponsiveMenu::getOption( 'RMDepth' );
+    static function createTransientMenu( $data ) {
         
         $cachedMenu = wp_nav_menu( array(
-                'menu' => $name,
+                'menu' => $data['RM'],
                 'menu_class' => 'responsive-menu',
-                'depth' => $depth,
-                'walker' => ( !empty( $walker ) ) ? new $walker : '', // Add by Mkdgs
+                'depth' => $data['RMDepth'] ,
+                'walker' => ( !empty( $data['RMWalker'] ) ) ? new $data['RMWalker'] : '', // Add by Mkdgs
                 'echo' => false 
                 )
             );
