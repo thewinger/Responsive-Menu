@@ -174,7 +174,9 @@ class RM_AdminModel extends RM_BaseModel {
         
         $RMUseTran = isset( $data['RMUseTran'] ) ? $data['RMUseTran'] : RM_Registry::get( 'defaults', 'RMUseTran' );
         
-         /* Added in 2.5 Mkdgs */
+        $RMLoc = isset( $data['RMLoc'] ) ? $data['RMLoc'] : RM_Registry::get( 'defaults', 'RMLoc' );
+        
+        /* Added in 2.6 Mkdgs */
         
         $RMThemeLocation = isset( $data['RMThemeLocation'] ) ? $data['RMThemeLocation'] : RM_Registry::get( 'defaults', 'RMThemeLocation' );
         
@@ -345,7 +347,9 @@ class RM_AdminModel extends RM_BaseModel {
             
             'RMUseTran' => self::Filter( $RMUseTran ),
             
-            /* Added in 2.5 Mkdgs */          
+            'RMLoc' => self::Filter( $RMLoc ),
+            
+            /* Added in 2.6 Mkdgs */          
             
             'RMThemeLocation' => self::Filter( $RMThemeLocation ),
             

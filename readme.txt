@@ -3,8 +3,8 @@ Contributors: peter.featherstone
 Donate link: http://www.peterfeatherstone.com/donate/
 Tags: responsive, menu, responsive menu, mobile menu, tablet menu, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.5.0
-Tested up to: 4.1
-Stable tag: 2.4
+Tested up to: 4.2.2
+Stable tag: 2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ This is a Highly Customisable Responsive Menu Created By Peter Featherstone
 
 == Description ==
 
-This is a Highly Customisable Responsive Menu Plugin, with 68 customisable options for a nice mobile menu or tablet menu experience enabling you to change the: 
+This is a Highly Customisable Responsive Menu Plugin, with 69 customisable options for a nice mobile menu or tablet menu experience enabling you to change the: 
 <br />
 <ul>
 <li> - Menu Title</li>
@@ -76,6 +76,7 @@ This is a Highly Customisable Responsive Menu Plugin, with 68 customisable optio
 <li> - Ability to change Current Page Link hover colour</li>
 <li> - Ability to provide a custom walker option</li>
 <li> - Ability to choose to use transient caching or not</li>
+<li> - Ability to choose if menu is shown on left or right of screen</li>
 <li> - Plus more...</li>
 </ul>
 The plugin creates a nice three-lined mobile menu button (or custom image if you choose) that users can click to bring a slide out menu (from the left, right, top or bottom - again your choice), which is easily navigated. A lot nicer and neater than the select drop-down menu alternative.
@@ -96,7 +97,7 @@ It also includes the following functionality:
 </ul>
 Please see the current development list on the below page:
 
-<a href="http://peterfeatherstone.com/wordpress/responsive-menu/responsive-menu-development-list/">http://peterfeatherstone.com/wordpress/responsive-menu/responsive-menu-development-list/</a>
+<a href="http://peterfeatherstone.com/wordpress/responsive-menu/responsive-menu-development-list/">Development List</a>
 
 If you would like to see any other options added to the plugin or would like to help with translating the plugin into various versions then please email me or place them in a support ticket.
 <br />
@@ -132,6 +133,25 @@ Alternatively:
 5. Example Custom Front End Expanded Menu
 
 == Changelog ==
+
+= 2.5 (20th May 2015) =
+* Fixed issue with duplicate sub menu arrows
+* Added option to set if menu is shown on left or right
+* Fixed issue with custom sub menu classes
+* Button now compatible with Apple Voiceover
+* Changed "X" close icon to the math symbol "x" - Thanks to patlog for the idea!
+* Added many more shortcode options as below:           
+                     
+    - "title"
+    - "title_link"
+    - "title_open"
+    - "title_img"
+    - "html"
+    - "html_loc"
+    - "search_loc"
+    - "btn_img"
+    - "btn_img_clicked"
+    - "btn_title"
 
 = 2.4 (18th Feb 2015) =
 

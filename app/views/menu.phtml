@@ -8,7 +8,7 @@
 
             <?php if( $data['RMImage'] ) : ?>
 
-                <?php if( isset( $data['RMTitleLink'] ) ) : ?>
+                <?php if( isset( $data['RMTitleLink'] ) && !empty( $data['RMTitleLink'] ) ) : ?>
             
                     <a href="<?php echo $data['RMTitleLink']; ?>" target="<?php echo $data['RMTitleLoc']; ?>">
                         
@@ -19,7 +19,7 @@
                      alt="<?php echo $data['RMTitle']; ?>" 
                      title="<?php echo $data['RMTitle']; ?>" />
                 
-            <?php if( isset( $data['RMTitleLink'] ) ) : ?>
+            <?php if( isset( $data['RMTitleLink'] ) && !empty( $data['RMTitleLink'] ) ) : ?>
                 
                     </a>
             
@@ -27,7 +27,7 @@
 
             <?php endif; ?>
 
-            <?php if( isset( $data['RMTitleLink'] ) && $data['RMTitle'] ) : ?>
+            <?php if( isset( $data['RMTitleLink'] ) && !empty( $data['RMTitleLink'] ) ) : ?>
             
                 <a href="<?php echo $data['RMTitleLink']; ?>" target="<?php echo $data['RMTitleLoc']; ?>">
                     
@@ -35,7 +35,7 @@
                     
             <?php echo $data['RMTitle']; ?>
                 
-            <?php if( isset( $data['RMTitleLink'] ) ) : ?>
+            <?php if( isset( $data['RMTitleLink'] ) && !empty( $data['RMTitleLink'] ) ) : ?>
                     
                 </a>
             
@@ -46,7 +46,7 @@
     <?php endif;
 
         if( isset( $data['RMHtml'] ) && $data['RMHtmlLoc'] == 'above' ) :
-            self::additionalContent();
+            self::additionalContent( $data['RMHtml'] );
         endif;
             
         if( !$data['RMSearch'] && $data['RMSearchPos'] == 'above' ) :
@@ -58,7 +58,7 @@
          * Added 19/01/15 v2.3
          */
         
-       echo RM_Transient::getTransientMenu( $data); // pass the entire array of options 
+       echo RM_Transient::getTransientMenu( $data );
         
         /* End Caching */
         
@@ -67,59 +67,9 @@
         endif;
         
         if( isset( $data['RMHtml'] ) && $data['RMHtmlLoc'] == 'below' ) :
-            self::additionalContent();
+            self::additionalContent( $data['RMHtml'] );
         endif;
 
     ?>
     
-</div>
-
-<!-- Added by Responsive Menu Plugin created by Peter Featherstone -->
-
-<div id="click-menu" <?php echo is_admin_bar_showing() ? 'class="admin-bar-showing"' : ''; ?>>
-
-<?php if( $data['RMX'] || $data['RMClickImgClicked'] ) : ?>
-
-    <?php if( $data['RMClickImgClicked'] ) : ?>
-    
-        <img 
-            id="RMX" 
-            src="<?php echo $data['RMClickImgClicked']; ?>" 
-            class="click-menu-image"
-            alt="Responsive Menu Image"
-            title="Responsive Menu Image" />
-    
-    <?php else : ?>
-    
-        <div class="threeLines" id="RMX">x</div>
-    
-    <?php endif; ?>
-
-<?php endif; ?>
-
-<?php if( !$data['RMClickImg'] ) : ?>
-
-    <div class="threeLines" id="RM3Lines">       
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-    </div>
-
-<?php else : ?>
-
-    <img 
-        id="RM3Lines" 
-        src="<?php echo $data['RMClickImg']; ?>" 
-        class="click-menu-image"
-        alt="Responsive Menu Clicked Image"
-        title="Responsive Menu Clicked Image" />
-
-<?php endif; ?>
-
-<?php if( $data['RMClickTitle'] ) : ?>
-
-    <div id="click-menu-label"><?php echo $data['RMClickTitle']; ?></div>
-
-<?php endif; ?>
-
 </div>

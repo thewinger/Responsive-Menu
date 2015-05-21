@@ -115,6 +115,10 @@ class RM_CSSModel extends RM_BaseModel {
         $curBkgHov = empty( $options['RMCurBkgHov'] ) ? $mainBkg : $options['RMCurBkgHov'];
         $curColHov = empty( $options['RMCurColHov'] ) ? $txtCol : $options['RMCurColHov'];
         
+        /* Added 2.5 */
+        
+        $location = $options['RMLoc'];
+        
  /*
 |--------------------------------------------------------------------------
 | Initialise Output
@@ -139,7 +143,7 @@ $css .= $options['RMExternal'] ? '' : '<style>';
 
         
         $css .= "
-
+            
             #responsive-menu .appendLink, 
             #responsive-menu .responsive-menu li a, 
             #responsive-menu #responsive-menu-title a,
@@ -344,7 +348,7 @@ $css .= $options['RMExternal'] ? '' : '<style>';
                 font-size: {$btnSize}px{$important}
                 display: none;
                 position: $position;
-                right: $right%;
+                $location: $right%;
                 top: {$top}px;
                 color: $clickCol;
                 $clickBkg
@@ -460,90 +464,35 @@ $css .= $options['RMExternal'] ? '' : '<style>';
                     display: block;
                 }
 
-";
+        ";
 
         $css .= $options['RMCss'] ? $options['RMCss'] . " { display: none !important; } " : '';
-
-        if( $options['RMDepth'] == 1 ) :
-            
-            $css .= "
-                
-                #responsive-menu .responsive-menu li .appendLink,
-                #responsive-menu .responsive-menu li li { display: none !important; }
-
-            ";
-
-        endif;
-        
-        if( $options['RMDepth'] == 2 ) :
-            
-            $css .= "
-                
-                #responsive-menu .responsive-menu li li .appendLink,
-                #responsive-menu .responsive-menu li li li { display: none !important; }
-
-            ";
-        
-        endif;
-        
-        if( $options['RMDepth'] == 3 ) :
-            
-            $css .= "
-                
-                #responsive-menu .responsive-menu li li li .appendLink,
-                #responsive-menu .responsive-menu li li li li { display: none !important; }
-
-            ";
-        
-        endif;
-        
-        if( $options['RMDepth'] == 4 ) :
-            
-            $css .= "
-                
-                #responsive-menu .responsive-menu li li li li .appendLink,
-                #responsive-menu .responsive-menu li li li li li { display: none !important; }
-
-            ";
-
-        endif;
-        
-        if( $options['RMDepth'] == 5 ) :
-            
-            $css .= "
-                
-                #responsive-menu .responsive-menu li li li li li .appendLink,
-                #responsive-menu .responsive-menu li li li li li li { display: none !important; }
-
-            ";
-
-        endif;
 
         $css .= " }";
 
         $css .= $options['RMAnim'] == 'push' && $options['RMPushCSS'] ? $options['RMPushCSS'] . " { position: {$pushPos}{$important} left: 0px; } " : '';
  
-/*
-|--------------------------------------------------------------------------
-| Strip Tags If Needed
-|--------------------------------------------------------------------------
-|
-| Determine whether to use the <style> tags
-|
-*/       
+        /*
+        |--------------------------------------------------------------------------
+        | Strip Tags If Needed
+        |--------------------------------------------------------------------------
+        |
+        | Determine whether to use the <style> tags
+        |
+        */       
 
-$css .= $options['RMExternal'] ? '' : '</style>';
+        $css .= $options['RMExternal'] ? '' : '</style>';
 
-/*
-|--------------------------------------------------------------------------
-| Return Finished Styles
-|--------------------------------------------------------------------------
-|
-| Finally we return the final script back
-|
-*/   
-        
-return $css;
+        /*
+        |--------------------------------------------------------------------------
+        | Return Finished Styles
+        |--------------------------------------------------------------------------
+        |
+        | Finally we return the final script back
+        |
+        */   
+
+        return $css;
         
         
     }

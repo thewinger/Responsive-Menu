@@ -94,8 +94,7 @@ class RM_View {
             <input type="search" name="s" value="" placeholder="<?php _e( 'Search', 'responsive-menu' ); ?>" id="responsiveSearchInput">
             <input type="submit" id="responsiveSearchSubmit" />
             
-        </form>
-                        
+        </form>                        
                         
    <?php 
    
@@ -109,17 +108,13 @@ class RM_View {
      * @added 2.0
      */
     
-    static function additionalContent() { 
+    static function additionalContent( $html ) { ?>
         
-        if( ResponsiveMenu::getOption( 'RMHtml' ) ) : ?>
-        
-            <div id="rm-additional-content">
-                <?php echo do_shortcode( ResponsiveMenu::getOption( 'RMHtml' ) ); ?>
-            </div>
+        <div id="rm-additional-content">
+            <?php echo do_shortcode( $html ); ?>
+        </div>
                                       
     <?php 
-   
-        endif;
    
     }
     

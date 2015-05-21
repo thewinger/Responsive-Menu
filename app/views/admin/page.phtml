@@ -267,15 +267,15 @@
                                 value="shortcode"
                                 <?php echo isset( $data['RMShortcode'] ) && $data['RMShortcode'] == 'shortcode' ? ' checked="checked" ' : ''; ?>
                                 /> [responsive-menu]
-                            <br /><br />
+                                    <br /><br />
                                 </td>        
                             </tr>  
                             <tr>
                                 <td colspan="2">
-                                    <?php _e( "For a list of available shortcode options please visit the following page:", 'responsive-menu' ); ?> 
-                                    <br />
+                                    <?php _e( "For a list of available shortcode options with explanations please visit the following page:", 'responsive-menu' ); ?> 
+                                    <br /><br />
                                     <a target="_blank" href="http://peterfeatherstone.com/wordpress/responsive-menu/faq/shortcode/options/">
-                                        http://peterfeatherstone.com/wordpress/responsive-menu/faq/shortcode/options/
+                                        <?php _e( "Shortcode Options" ); ?>
                                     </a>
                                 </td>
                             </tr>
@@ -283,12 +283,12 @@
                         </td>
                         <td>
                             
-                            <h4>Available Shortcode Options/Values</h4>
+                            <h4><?php _e( "Available Shortcode Options/Values" ); ?></h4>
                             
                             <table>
                                 <tr>
-                                    <td><strong>Option</strong></td>
-                                    <td><strong>Values</strong></td>
+                                    <td><strong><?php _e( "Option" ); ?></strong></td>
+                                    <td><strong><?php _e( "Values" ); ?></strong></td>
                                 </tr>
                                 
                                 <?php if( ResponsiveMenu::hasMenus() ) : 
@@ -297,7 +297,7 @@
                                     
                                         foreach( $menus = ResponsiveMenu::getMenus() as $menu ) :
                                     
-                                            $opt = $i == 0 ? 'RM' : '';
+                                            $opt = $i == 0 ? 'menu' : '';
                                         
                                             echo '<tr><td>' . $opt . '</td><td>' .$menu->slug . '</td></tr>';
 
@@ -305,16 +305,68 @@
                                             
                                         endforeach;
                                     
-                                        echo '<tr><td colspan="2"><br /><em>e.g - [responsive-menu RM="' . $menus[0]->slug . '"]</em></td></tr>';
+                                        echo '<tr><td colspan="2"><br /><em>e.g - [responsive-menu menu="' . $menus[0]->slug . '"]</em></td></tr>';
                                         
                                     else :
                                             
-                                            echo '<tr><td colspan="2">Sorry, there are no available options</td></tr>';
+                                            echo '<tr><td colspan="2">' . _e( "Sorry, there are no available options" ) . '</td></tr>';
                                         
                                     endif;
                                                                 
                                 ?>
-                                
+                                <tr>
+                                    <td><strong><?php _e( "Option" ); ?></strong></td>
+                                    <td><strong><?php _e( "Example Value" ); ?></strong></td>
+                                </tr>
+                                <tr>
+                                    <td>title</td>
+                                    <td>Título</td>
+                                </tr>
+                                <tr>
+                                    <td>title_link</td>
+                                    <td>http://mipagina.es</td>
+                                </tr>
+                                <tr>
+                                    <td>title_open</td>
+                                    <td>_blank</td>
+                                </tr>
+                                <tr>
+                                    <td>title_img</td>
+                                    <td>http://example.com/title-img-2.jpg</td>
+                                </tr>
+                                <tr>
+                                    <td>html</td>
+                                    <td>&lt;a href='http://www.example.com'&gt;Example&lt;/a&gt;</td>
+                                </tr>
+                                <tr>
+                                    <td>html_loc</td>
+                                    <td>above</td>
+                                </tr>
+                                <tr>
+                                    <td>search_loc</td>
+                                    <td>below</td>
+                                </tr>
+                                <tr>
+                                    <td>btn_img</td>
+                                    <td>http://example.com/btn-img-2.jpg</td>
+                                </tr>
+                                <tr>
+                                    <td>btn_img_clicked</td>
+                                    <td>http://example.com/btn-img-clicked-2.jpg</td>
+                                </tr>
+                                <tr>
+                                    <td>btn_title</td>
+                                    <td>Menú</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <em><?php _e( "e.g" ); ?> - [responsive-menu title="Título" title_link="http://mipagina.es"]</em>
+                                    </td>
+                                </tr>
                             </table>
                             
                         </td>
@@ -513,16 +565,49 @@
                     </td>
                     <td>
 
-                        <h4><?php _e( 'Right', 'responsive-menu' ); ?></h4> 
+                        <h4><?php _e( 'Left/Right Distance', 'responsive-menu' ); ?></h4> 
 
-                        <h5><?php _e( 'This is the distance from the right of the page in % that the menu will be displayed', 'responsive-menu' ); ?></h5>
+                        <h5><?php _e( 'This is the distance from the right/left of the page (as defined below) in % that the menu will be displayed', 'responsive-menu' ); ?></h5>
 
                         <input 
                             class="numberInput" 
                             type="text" 
                             name="RMRight" 
-                            value="<?php echo isset($data['RMRight']) ? $data['RMRight'] : ''; ?>" 
+                            value="<?php echo isset( $data['RMRight'] ) ? $data['RMRight'] : ''; ?>" 
                             /> %
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <h4><?php _e( 'Left/Right', 'responsive-menu' ); ?></h4> 
+
+                        <h5><?php _e( 'This defines whether the menu button is shown as a percentage from the left or right', 'responsive-menu' ); ?></h5>
+
+                        <select name="RMLoc">
+
+                            <option 
+                                value="left"
+                                <?php echo 'left' == $data['RMLoc'] ? 'selected="selected">' : '>'; ?>
+                                Left
+                            </option>
+                            
+                            <option 
+                                value="right"
+                                <?php echo 'right' == $data['RMLoc'] ? 'selected="selected">' : '>'; ?>
+                                Right
+                            </option>
+
+                        </select>
+
+                    </td>
+                    <td>
+
+                        <h4><?php _e( '', 'responsive-menu' ); ?></h4> 
+
+                        <h5><?php _e( '', 'responsive-menu' ); ?></h5>
+
 
                     </td>
                 </tr>
@@ -578,7 +663,8 @@
 
                             <?php if( ResponsiveMenu::hasMenus() ) : ?>
 
-                                <select name="RM">                                        
+                                <select name="RM">
+
                                     <?php foreach( ResponsiveMenu::getMenus() as $menu ) : ?>
 
                                         <option 
@@ -587,14 +673,7 @@
                                             <?php echo $menu->name; ?>
                                         </option>
 
-                                    <?php endforeach; ?>
-                                        
-                                    <option 
-                                            value=""
-                                            <?php echo ( empty($data['RM'])  )? 'selected="selected"' : ''; ?>  
-                                            >
-                                            <?php echo _e( 'none, i use Theme Location', 'responsive-menu' ); ?>
-                                    </option>
+                                <?php endforeach; ?>
 
                             </select>
 
@@ -605,9 +684,9 @@
                             <?php endif; ?>  
                                 
                             <?php // Choose Theme Location Menu add by mkdgs ?>   
-                            <h4><?php _e('Choose Theme Location Menu To Responsify', 'responsive-menu' ); ?></h4> 
+                            <h4><?php _e( 'Choose Theme Location Menu To Responsify', 'responsive-menu' ); ?></h4> 
 
-                            <h5><?php _e('The menu assigned to this theme location (registered with register_nav_menu) will used for displaying the responsive menu (usefull if you use a plugin like polylang)', 'responsive-menu' ); ?>.</h5>
+                            <h5><?php _e( 'The menu assigned to this theme location (registered with register_nav_menu) will be used for displaying the responsive menu (usefull if you use a plugin like polylang)', 'responsive-menu' ); ?>.</h5>
 
                             <?php if( $MenusLocations = ResponsiveMenu::getMenusLocations() ) : ?>
 
@@ -1015,7 +1094,7 @@
                     </td>
                     <td>
 
-                        <h4><?php _e( 'Inactive Gemetric Shape', 'responsive-menu' ); ?></h4> 
+                        <h4><?php _e( 'Inactive Geometric Shape', 'responsive-menu' ); ?></h4> 
 
                         <input 
                             type="text" 
@@ -1750,4 +1829,5 @@
                     </table>
                 
             </form>
+
         </div>

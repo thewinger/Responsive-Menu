@@ -82,571 +82,590 @@ class RM_JSModel extends RM_BaseModel {
         
         $speed = $options['RMAnimSpd'] * 1000;
         
-/*
-|--------------------------------------------------------------------------
-| Slide Push Animation
-|--------------------------------------------------------------------------
-|
-| This is where we deal with the JavaScript needed to change the main lines
-| to an X if this option has been set
-|
-*/
+        /* Added 2.5 */
         
-$slideOver = null;
-      
-if( $options['RMAnim'] == 'push' ) :
-    
-    if( $options['RMSide'] == 'top' || $options['RMSide'] == 'bottom' ) :
-   
-        $slideOver = "
+        $location = $options['RMLoc'];
         
-            var MenuHeight = \$RMjQuery( '#responsive-menu' ).css( 'height' );
-        
-            \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"{$pos}\" + MenuHeight }, {$speed}, 'linear' );
+        /*
+        |--------------------------------------------------------------------------
+        | Slide Push Animation
+        |--------------------------------------------------------------------------
+        |
+        | This is where we deal with the JavaScript needed to change the main lines
+        | to an X if this option has been set
+        |
+        */
+
+        $slideOver = null;
+
+        if( $options['RMAnim'] == 'push' ) :
+
+            if( $options['RMSide'] == 'top' || $options['RMSide'] == 'bottom' ) :
+
+                $slideOver = "
+
+                    var MenuHeight = \$RMjQuery( '#responsive-menu' ).css( 'height' );
+
+                    \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"{$pos}\" + MenuHeight }, {$speed}, 'linear' );
 
 
-        ";
-            
-        if( $options['RMPushBtn'] ) :
-
-            $slideOver .= "
-                
-                \$RMjQuery( '#click-menu' ).animate( { $pushSide: \"{$pos}\" + MenuHeight }, {$speed}, 'linear' );
-                \$RMjQuery( '#click-menu' ).css( 'right', 'auto' );
-                
                 ";
 
+                if( $options['RMPushBtn'] ) :
+
+                    $slideOver .= "
+
+                        \$RMjQuery( '#click-menu' ).animate( { $pushSide: \"{$pos}\" + MenuHeight }, {$speed}, 'linear' );
+                        \$RMjQuery( '#click-menu' ).css( '$location', 'auto' );
+
+                        ";
+
+                endif;
+
+            else :
+
+                $slideOver = "
+
+                    \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"{$pos}{$width}%\" }, {$speed}, 'linear' );
+
+
+                ";
+
+                if( $options['RMPushBtn'] ) :
+
+                    $slideOver .= "
+
+                        \$RMjQuery( '#click-menu' ).animate( { $pushSide: \"{$pos}{$width}%\" }, {$speed}, 'linear' );
+                        \$RMjQuery( '#click-menu' ).css( '{$location}', 'auto' );
+
+                    ";
+
+                endif;
+
+
+            endif;
+
         endif;
-        
-    else :
-        
-        $slideOver = "
-        
-            \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"{$pos}{$width}%\" }, {$speed}, 'linear' );
 
+        $slideOverCss = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).addClass( 'RMPushSlide' ); " : '';
 
-        ";
-        
-        if( $options['RMPushBtn'] ) :
+        $slideBack = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"0\" }, {$speed}, 'linear' ); " : '';
 
-            $slideOver .= "
+        if( $options['RMPushBtn'] && $options['RMAnim'] == 'push' ) :
 
-                \$RMjQuery( '#click-menu' ).animate( { $pushSide: \"{$pos}{$width}%\" }, {$speed}, 'linear' );
-                \$RMjQuery( '#click-menu' ).css( 'right', 'auto' );
+            $slideBack .= "
+
+                \$RMjQuery( '#click-menu' ).animate( { $pushSide: \"{$options['RMRight']}\" }, {$speed}, 'linear', function() {
+
+                    \$RMjQuery( '#click-menu' ).removeAttr( 'style' );
+
+                });
 
             ";
 
         endif;
-        
-        
-    endif;
-
-endif;
-    
-$slideOverCss = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).addClass( 'RMPushSlide' ); " : '';
-
-$slideBack = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).animate( { $pushSide: \"0\" }, {$speed}, 'linear' ); " : '';
-        
-if( $options['RMPushBtn'] && $options['RMAnim'] == 'push' ) :
-
-    $slideBack .= "
-
-        \$RMjQuery( '#click-menu' ).animate( { $pushSide: \"{$options['RMRight']}\" }, {$speed}, 'linear', function() {
-            
-            \$RMjQuery( '#click-menu' ).removeAttr( 'style' );
-                
-        });
-        
-    ";
-
-endif;
-        
-$slideOverCssRemove = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).removeClass( 'RMPushSlide' ); " : '';
-
-        
-
-/*
-|--------------------------------------------------------------------------
-| Change to X or Clicked Menu Image Option
-|--------------------------------------------------------------------------
-|
-| This is where we deal with the JavaScript needed to change the main lines
-| to an X or click image if this option has been set
-|
-*/
-        
-if( $options['RMX'] || $options['RMClickImgClicked'] ) : 
-
-    $closeX = " \$RMjQuery( '#click-menu #RMX' ).css( 'display', 'none' );
-                \$RMjQuery( '#click-menu #RM3Lines' ).css( 'display', 'block' ); ";
-
-    $showX = " \$RMjQuery( '#click-menu #RM3Lines' ).css( 'display', 'none' );
-                 \$RMjQuery( '#click-menu #RMX' ).css( 'display', 'block' ); ";        
-else :
-
-    $closeX = "";
-    $showX = "";
-
-endif;            
-
-/*
-|--------------------------------------------------------------------------
-| Menu Expansion Options
-|--------------------------------------------------------------------------
-|
-| This is where we deal with the array of expansion options, the current
-| combinations are:
-|
-| - Auto Expand Current Parent Items ['RMExpandPar']
-| - Auto Expand Current Parent Items + Auto Expand Sub-Menus ['RMExpandPar'] && ['RMExpand']
-| - Auto Expand Sub-Menus ['RMExpand']
-| - None !['RMExpandPar'] && !['RMExpand']
-|
-*/
-   
-$activeArrow = $options['RMArImgA'] ? '<img src="' . $options['RMArImgA'] . '" />' : json_decode( $options['RMArShpA'] );
-$inactiveArrow = $options['RMArImgI'] ? '<img src="' . $options['RMArImgI'] . '" />' : json_decode( $options['RMArShpI'] );
-
-
-if ( !$options['RMExpand'] ) :
-
-    $clickedLink = '<span class=\"appendLink\">' . $inactiveArrow . '</span>';  
-    $clickLink = '<span class=\"appendLink\">' . $inactiveArrow . '</span>';  
-
-else :
-
-    $clickedLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>';
-    $clickLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>'; 
-
-endif;
-
-if( $options['RMExpandPar'] ) :
-
-    $clickedLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>';
-    $clickLink = '<span class=\"appendLink\">' . $inactiveArrow . '</span>'; 
-
-endif;
-
-if( $options['RMExpandPar'] && $options['RMExpand'] ) :
-
-    $clickedLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>';
-    $clickLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>'; 
-
-endif;
-    
-        
-/*
-|--------------------------------------------------------------------------
-| Initialise Output
-|--------------------------------------------------------------------------
-|
-| Initialise the JavaScript output variable ready for appending
-|
-*/   
-        
-$js = null;
-        
-/*
-|--------------------------------------------------------------------------
-| Strip Tags If Needed
-|--------------------------------------------------------------------------
-|
-| Determine whether to use the <script> tags (when using internal scripts)
-|
-*/       
-
-$js .= $options['RMExternal'] ? '' : '<script>';
-
-/*
-|--------------------------------------------------------------------------
-| Initial Setup
-|--------------------------------------------------------------------------
-|
-| Setup the initial noConflict and document ready checks
-|
-*/   
-
-$js .= "
-
-    var \$RMjQuery = jQuery.noConflict();
-
-    \$RMjQuery( document ).ready( function() {
-    
-";
-
-/*
-|--------------------------------------------------------------------------
-| Stop Main Parent Item Clicks
-|--------------------------------------------------------------------------
-|
-| Stop clicks on the main parent items if option selected
-| Added 2.0
-*/ 
-
-if( $options['RMIgnParCli'] ) :
-
-    $js .= "
-
-        \$RMjQuery( '#responsive-menu ul > li.menu-item-has-children' ).children( 'a' ).addClass( 'rm-click-disabled' );
-
-        \$RMjQuery( '#responsive-menu ul > li.menu-item-has-children' ).children( 'a' ).on( 'click', function( e ) {
-        
-            e.preventDefault();
-            
-        });
-
-        \$RMjQuery( '#responsive-menu ul > li.page_item_has_children' ).children( 'a' ).addClass( 'rm-click-disabled' );
-
-        \$RMjQuery( '#responsive-menu ul > li.page_item_has_children' ).children( 'a' ).on( 'click', function( e ) {
-        
-            e.preventDefault();
-            
-        });
-        
-    ";
-
-endif;
-   
-/*
-|--------------------------------------------------------------------------
-| Closes the menu on page clicks
-|--------------------------------------------------------------------------
-|
-| Close menu on page clicks if required
-| Added 2.0
-*/ 
-
-if( $options['RMCliToClo'] ) :
-
-    $js .= "
-
-        \$RMjQuery( document ).on( 'click tap', function( e ) { 
-        
-            if( !\$RMjQuery( e.target ).closest( '#responsive-menu, {$trigger}' ).length ) { 
-            
-                closeRM(); 
-                
-            } 
-        
-        });
-        
-    ";
-
-endif;
-
-
- /*
-|--------------------------------------------------------------------------
-| Click Menu Function
-|--------------------------------------------------------------------------
-|
-| This is our Click Handler to determine whether or not to open or close 
-| the menu when the click menu button has been clicked.
-|
-*/
-
-$js .= "
-    
-    var isOpen = false;
-
-    \$RMjQuery( document ).on( 'click', '{$trigger}', function() {
-
-        $setHeight
-
-        !isOpen ? openRM() : closeRM();
-
-    });
-
-";
-        
-/*
-|--------------------------------------------------------------------------
-| Menu Open Function
-|--------------------------------------------------------------------------
-|
-| This is the main function that deals with opening the menu and then sets
-| its state to open
-|
-*/
-        
-$js.= "
-                    
-    function openRM() {
-
-        $slideOpen  
-        $sideSlideOpen
-        $slideOverCss
-        $slideOver
-        $showX
-
-        \$RMjQuery( '#responsive-menu' ).css( 'display', 'block' ); 
-        \$RMjQuery( '#responsive-menu' ).addClass( 'RMOpened' );  
-        \$RMjQuery( '#click-menu' ).addClass( 'click-menu-active' );  
-
-        \$RMjQuery( '#responsive-menu' ).stop().animate( { $side: \"0\" }, $speed, 'linear', function() { 
-
-          $setHeight
-
-          isOpen = true;
-
-        } ); 
-
-    }
-
-";
-   
-/*
-|--------------------------------------------------------------------------
-| Menu Close Function
-|--------------------------------------------------------------------------
-|
-| This is the main function that deals with Closing the Menu and then sets
-| its state to closed
-|
-*/
-        
-$js .= "
-    
-    function closeRM() {
-
-        $slideBack
-
-        \$RMjQuery( '#responsive-menu' ).animate( { $side: \"{$neg}{$width}%\" }, $speed, 'linear', function() { 
-
-            $slideRemove
-            $sideSlideRemove
-            $slideOverCssRemove
-            $closeX
-            \$RMjQuery( '#responsive-menu' ).css( 'display', 'none' );  
-            \$RMjQuery( '#responsive-menu' ).removeClass( 'RMOpened' );  
-            \$RMjQuery( '#click-menu' ).removeClass( 'click-menu-active' ); 
-
-            isOpen = false;
-
-        } );
-
-    }
-
-";
-
-/*
-|--------------------------------------------------------------------------
-| Menu Resize Function
-|--------------------------------------------------------------------------
-|
-| This is the main function that deals with resizing the page and is used 
-| to judge whether the menu needs closing once the screen is resized
-|
-*/
-                        
-$js .= "
-    
-    \$RMjQuery( window ).resize( function() { 
-
-        $setHeight
-
-        if( \$RMjQuery( window ).width() > $breakpoint ) { 
-
-            if( \$RMjQuery( '#responsive-menu' ).css( '$side' ) != '-{$width}%' ) {
-
-                closeRM();
+
+        $slideOverCssRemove = $options['RMAnim'] == 'push' && !empty($options['RMPushCSS']) ? " \$RMjQuery( '$RMPushCSS' ).removeClass( 'RMPushSlide' ); " : '';
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Change to X or Clicked Menu Image Option
+        |--------------------------------------------------------------------------
+        |
+        | This is where we deal with the JavaScript needed to change the main lines
+        | to an X or click image if this option has been set
+        |
+        */
+
+        if( $options['RMX'] || $options['RMClickImgClicked'] ) : 
+
+            $closeX = " \$RMjQuery( '#click-menu #RMX' ).css( 'display', 'none' );
+                        \$RMjQuery( '#click-menu #RM3Lines' ).css( 'display', 'block' ); ";
+
+            $showX = " \$RMjQuery( '#click-menu #RM3Lines' ).css( 'display', 'none' );
+                         \$RMjQuery( '#click-menu #RMX' ).css( 'display', 'block' ); ";        
+        else :
+
+            $closeX = "";
+            $showX = "";
+
+        endif;            
+
+        /*
+        |--------------------------------------------------------------------------
+        | Menu Expansion Options
+        |--------------------------------------------------------------------------
+        |
+        | This is where we deal with the array of expansion options, the current
+        | combinations are:
+        |
+        | - Auto Expand Current Parent Items ['RMExpandPar']
+        | - Auto Expand Current Parent Items + Auto Expand Sub-Menus ['RMExpandPar'] && ['RMExpand']
+        | - Auto Expand Sub-Menus ['RMExpand']
+        | - None !['RMExpandPar'] && !['RMExpand']
+        |
+        */
+
+        $activeArrow = $options['RMArImgA'] ? '<img src="' . $options['RMArImgA'] . '" />' : json_decode( $options['RMArShpA'] );
+        $inactiveArrow = $options['RMArImgI'] ? '<img src="' . $options['RMArImgI'] . '" />' : json_decode( $options['RMArShpI'] );
+
+
+        if ( !$options['RMExpand'] ) :
+
+            $clickedLink = '<span class=\"appendLink\">' . $inactiveArrow . '</span>';  
+            $clickLink = '<span class=\"appendLink\">' . $inactiveArrow . '</span>';  
+
+        else :
+
+            $clickedLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>';
+            $clickLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>'; 
+
+        endif;
+
+        if( $options['RMExpandPar'] ) :
+
+            $clickedLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>';
+            $clickLink = '<span class=\"appendLink\">' . $inactiveArrow . '</span>'; 
+
+        endif;
+
+        if( $options['RMExpandPar'] && $options['RMExpand'] ) :
+
+            $clickedLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>';
+            $clickLink = '<span class=\"appendLink rm-append-active\">' . $activeArrow . '</span>'; 
+
+        endif;
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Initialise Output
+        |--------------------------------------------------------------------------
+        |
+        | Initialise the JavaScript output variable ready for appending
+        |
+        */   
+
+        $js = null;
+
+        /*
+        |--------------------------------------------------------------------------
+        | Strip Tags If Needed
+        |--------------------------------------------------------------------------
+        |
+        | Determine whether to use the <script> tags (when using internal scripts)
+        |
+        */       
+
+        $js .= $options['RMExternal'] ? '' : '<script>';
+
+        /*
+        |--------------------------------------------------------------------------
+        | Initial Setup
+        |--------------------------------------------------------------------------
+        |
+        | Setup the initial noConflict and document ready checks
+        |
+        */   
+
+        $js .= "
+
+            var \$RMjQuery = jQuery.noConflict();
+
+            \$RMjQuery( document ).ready( function() {
+
+        ";
+
+        /*
+        |--------------------------------------------------------------------------
+        | Stop Main Parent Item Clicks
+        |--------------------------------------------------------------------------
+        |
+        | Stop clicks on the main parent items if option selected
+        | Added 2.0
+        */ 
+
+        if( $options['RMIgnParCli'] ) :
+
+            $js .= "
+
+                \$RMjQuery( '#responsive-menu ul > li.menu-item-has-children' ).children( 'a' ).addClass( 'rm-click-disabled' );
+
+                \$RMjQuery( '#responsive-menu ul > li.menu-item-has-children' ).children( 'a' ).on( 'click', function( e ) {
+
+                    e.preventDefault();
+
+                });
+
+                \$RMjQuery( '#responsive-menu ul > li.page_item_has_children' ).children( 'a' ).addClass( 'rm-click-disabled' );
+
+                \$RMjQuery( '#responsive-menu ul > li.page_item_has_children' ).children( 'a' ).on( 'click', function( e ) {
+
+                    e.preventDefault();
+
+                });
+
+            ";
+
+        endif;
+
+        /*
+        |--------------------------------------------------------------------------
+        | Closes the menu on page clicks
+        |--------------------------------------------------------------------------
+        |
+        | Close menu on page clicks if required
+        | Added 2.0
+        */ 
+
+        if( $options['RMCliToClo'] ) :
+
+            $js .= "
+
+                \$RMjQuery( document ).on( 'click tap', function( e ) { 
+
+                    if( !\$RMjQuery( e.target ).closest( '#responsive-menu, {$trigger}' ).length ) { 
+
+                        closeRM(); 
+
+                    } 
+
+                });
+
+            ";
+
+        endif;
+
+
+         /*
+        |--------------------------------------------------------------------------
+        | Click Menu Function
+        |--------------------------------------------------------------------------
+        |
+        | This is our Click Handler to determine whether or not to open or close 
+        | the menu when the click menu button has been clicked.
+        |
+        */
+
+        $js .= "
+
+            var isOpen = false;
+
+            \$RMjQuery( document ).on( 'click', '{$trigger}', function() {
+
+                $setHeight
+
+                !isOpen ? openRM() : closeRM();
+
+            });
+
+        ";
+
+        /*
+        |--------------------------------------------------------------------------
+        | Menu Open Function
+        |--------------------------------------------------------------------------
+        |
+        | This is the main function that deals with opening the menu and then sets
+        | its state to open
+        |
+        */
+
+        $js.= "
+
+            function openRM() {
+
+                $slideOpen  
+                $sideSlideOpen
+                $slideOverCss
+                $slideOver
+                $showX
+
+                \$RMjQuery( '#responsive-menu' ).css( 'display', 'block' ); 
+                \$RMjQuery( '#responsive-menu' ).addClass( 'RMOpened' );  
+                \$RMjQuery( '#click-menu' ).addClass( 'click-menu-active' );  
+
+                \$RMjQuery( '#responsive-menu' ).stop().animate( { $side: \"0\" }, $speed, 'linear', function() { 
+
+                  $setHeight
+
+                  isOpen = true;
+
+                } ); 
 
             }
 
-        }
+        ";
 
-    });
+        /*
+        |--------------------------------------------------------------------------
+        | Menu Close Function
+        |--------------------------------------------------------------------------
+        |
+        | This is the main function that deals with Closing the Menu and then sets
+        | its state to closed
+        |
+        | Added by Bhupender
+        | Modified negative width to take directly width of menu instead of '%', 
+        | this works for condition where animation is push and max width of menu is less then %
+        |
+        */
 
-";
-        
+        $js .= "
 
-/*
-|--------------------------------------------------------------------------
-| Add Toggle Buttons
-|--------------------------------------------------------------------------
-|
-| This is the main section that deals with Adding the correct Toggle buttons
-| when needed to the links
-|
-*/
-            
-if( !$options['RMExpand'] )
-    $js .= "\$RMjQuery( '#responsive-menu ul ul' ).css( 'display', 'none' );";
-    
-    
-$js .= " 
-    
-    clickLink = '{$clickLink}';
-    clickedLink = '{$clickedLink}';
-        
-    excludeList = '.current-menu-item, .current-menu-ancestor, .current_page_ancestor';
-        
-    \$RMjQuery( '#responsive-menu .menu-item-has-children' ).not( excludeList ).prepend( clickLink );
-    
-    \$RMjQuery( '#responsive-menu .page_item_has_children.current-menu-item' ).prepend( clickedLink );  
-    \$RMjQuery( '#responsive-menu .page_item_has_children.current-menu-ancestor' ).prepend( clickedLink );    
-    \$RMjQuery( '#responsive-menu .menu-item-has-children.current-menu-item' ).prepend( clickedLink ); 
-    \$RMjQuery( '#responsive-menu .menu-item-has-children.current-menu-ancestor').prepend( clickedLink );
-    
-    \$RMjQuery( '#responsive-menu .page_item_has_children' ).not( excludeList ).prepend( clickLink );
-    \$RMjQuery( '#responsive-menu .menu-item-has-children.current_page_ancestor' ).prepend( clickedLink ); 
-    \$RMjQuery( '#responsive-menu .page_item_has_children.current_page_ancestor' ).prepend( clickedLink );
-    
-";
-                
-/*
-|--------------------------------------------------------------------------
-| Accordion Animation
-|--------------------------------------------------------------------------
-|
-| This is the part that deals with the accordion animation
-|
-*/     
-    
-if( $options['RMAccordion'] && $options['RMAccordion'] == 'accordion' ) :
-                
-    $accordion = " 
+            function closeRM() {
 
-    if( \$RMjQuery( this ).closest( 'ul' ).is( '.responsive-menu' ) ) {
+                $slideBack
 
-        \$RMjQuery( '.accordion-open' ).removeClass( 'accordion-open' );
-        
-        \$RMjQuery( this ).parent( 'li' ).addClass( 'accordion-open' );
+                \$RMjQuery( '#responsive-menu' ).animate( { $side: {$neg}\$RMjQuery( '#responsive-menu' ).width() }, $speed, 'linear', function() {
 
-        \$RMjQuery( '.responsive-menu li:not( .accordion-open ) > ul' ).slideUp();
+                    $slideRemove
+                    $sideSlideRemove
+                    $slideOverCssRemove
+                    $closeX
+                    \$RMjQuery( '#responsive-menu' ).css( 'display', 'none' );  
+                    \$RMjQuery( '#responsive-menu' ).removeClass( 'RMOpened' );  
+                    \$RMjQuery( '#click-menu' ).removeClass( 'click-menu-active' ); 
 
-            
-    }
+                    isOpen = false;
 
-    ";
+                } );
 
-else :
-        
-    $accordion = null;
-    
-endif;
+            }
 
-           
-/*
-|--------------------------------------------------------------------------
-| Toggle Buttons Function
-|--------------------------------------------------------------------------
-|
-| This is the function that deals with toggling the toggle buttons
-|
-*/                
-                
-$js .= "   
-    
-    \$RMjQuery( '.appendLink' ).on( 'click', function() { 
+        ";
 
-        $accordion
-    
-        \$RMjQuery( this ).nextAll( '#responsive-menu ul ul' ).slideToggle(); 
-          
-        \$RMjQuery( this ).html( \$RMjQuery( this ).hasClass( 'rm-append-active' ) ? '{$inactiveArrow}' : '{$activeArrow}' );
-        \$RMjQuery( this ).toggleClass( 'rm-append-active' );
+        /*
+        |--------------------------------------------------------------------------
+        | Menu Resize Function
+        |--------------------------------------------------------------------------
+        |
+        | This is the main function that deals with resizing the page and is used 
+        | to judge whether the menu needs closing once the screen is resized
+        |
+        |
+        | Added by Bhupender
+        | - Modified negative width to take directly width of menu instead of '%', 
+        |   this works for condition where animation is push and max width of menu is less then %
 
-        $setHeight
+        */
 
-    });
-    
-    \$RMjQuery( '.rm-click-disabled' ).on( 'click', function() { 
+        $js .= "
 
-        $accordion
-            
-        \$RMjQuery( this ).nextAll( '#responsive-menu ul ul' ).slideToggle(); 
+            \$RMjQuery( window ).resize( function() { 
 
-        \$RMjQuery( this ).siblings( '.appendLink' ).html( \$RMjQuery( this ).hasClass( 'rm-append-active' ) ? '{$inactiveArrow}' : '{$activeArrow}' );
-        \$RMjQuery( this ).toggleClass( 'rm-append-active' );
-        
-        $setHeight
+                $setHeight
 
-    }); 
-    
-";
- 
-/*
-|--------------------------------------------------------------------------
-| Menu Closing Options
-|--------------------------------------------------------------------------
-|
-| This is where we set the menu to retract if a link is clicked
-| Added 1.9
-|
-*/
-                
-if ( isset( $options['RMClickClose'] ) && $options['RMClickClose'] == 'close' ) : 
+                if( \$RMjQuery( window ).width() > $breakpoint ) { 
 
-   $js .= " 
-       \$RMjQuery( '#responsive-menu ul li a' ).on( 'click', function() { 
+                    if( \$RMjQuery( '#responsive-menu' ).css( '$side' ) != -\$RMjQuery( '#responsive-menu' ).width() ) {
 
-           closeRM();
+                        closeRM();
 
-       } );";
+                    }
 
-endif;
+                }
 
-/*
-|--------------------------------------------------------------------------
-| Expand children links of parents
-|--------------------------------------------------------------------------
-|
-| Section to automatically expand children links of parents if necessary
-| Added 2.0
-|
-*/
+            });
 
-if( $options['RMExpandPar'] ) :
-            
-    $js .= "
+        ";
 
-        \$RMjQuery( '#responsive-menu .current_page_ancestor.menu-item-has-children' ).children( 'ul' ).css( 'display', 'block' );
-        \$RMjQuery( '#responsive-menu .current-menu-ancestor.menu-item-has-children' ).children( 'ul' ).css( 'display', 'block' );
-        \$RMjQuery( '#responsive-menu .current-menu-item.menu-item-has-children' ).children( 'ul' ).css( 'display', 'block' );
-        
-        \$RMjQuery( '#responsive-menu .current_page_ancestor.page_item_has_children' ).children( 'ul' ).css( 'display', 'block' );
-        \$RMjQuery( '#responsive-menu .current-menu-ancestor.page_item_has_children' ).children( 'ul' ).css( 'display', 'block' );
-        \$RMjQuery( '#responsive-menu .current-menu-item.page_item_has_children' ).children( 'ul' ).css( 'display', 'block' );
 
-    ";
-                
-endif;
+        /*
+        |--------------------------------------------------------------------------
+        | Expand children links of parents
+        |--------------------------------------------------------------------------
+        |
+        | Section to automatically expand children links of parents if necessary
+        | Added 2.0
+        |
+        */
 
-/*
-|--------------------------------------------------------------------------
-| Close Tags
-|--------------------------------------------------------------------------
-|
-| This closes the initial document ready call
-|
-*/ 
-    
-$js .= '}); ';
+        if( $options['RMExpandPar'] ) :
 
-/*
-|--------------------------------------------------------------------------
-| Strip Tags If Needed
-|--------------------------------------------------------------------------
-|
-| Determine whether to use the <script> tags (when using internal scripts)
-|
-*/       
+            $js .= "
 
-$js .= $options['RMExternal'] ? '' : '</script>';
+                \$RMjQuery( '#responsive-menu ul ul' ).css( 'display', 'none' );
 
-        
-/*
-|--------------------------------------------------------------------------
-| Return Finished Script
-|--------------------------------------------------------------------------
-|
-| Finally we return the final script back
-|
-*/   
+                \$RMjQuery( '#responsive-menu .current_page_ancestor.menu-item-has-children' ).children( 'ul' ).css( 'display', 'block' );
+                \$RMjQuery( '#responsive-menu .current-menu-ancestor.menu-item-has-children' ).children( 'ul' ).css( 'display', 'block' );
+                \$RMjQuery( '#responsive-menu .current-menu-item.menu-item-has-children' ).children( 'ul' ).css( 'display', 'block' );
 
-return $js;
-            
+                \$RMjQuery( '#responsive-menu .current_page_ancestor.page_item_has_children' ).children( 'ul' ).css( 'display', 'block' );
+                \$RMjQuery( '#responsive-menu .current-menu-ancestor.page_item_has_children' ).children( 'ul' ).css( 'display', 'block' );
+                \$RMjQuery( '#responsive-menu .current-menu-item.page_item_has_children' ).children( 'ul' ).css( 'display', 'block' );
+
+            ";
+
+        endif;
+
+        /*
+        |--------------------------------------------------------------------------
+        | Add Toggle Buttons
+        |--------------------------------------------------------------------------
+        |
+        | This is the main section that deals with Adding the correct Toggle buttons
+        | when needed to the links
+        |
+        */
+
+        if( $options['RMExpand'] )
+            $js .= " \$RMjQuery( '#responsive-menu ul ul' ).css( 'display', 'block' ); ";
+
+        $js .= " 
+
+            var clickLink = '{$clickLink}';
+            var clickedLink = '{$clickedLink}';
+
+            \$RMjQuery( '#responsive-menu .responsive-menu li' ).each( function() {
+
+                if( \$RMjQuery( this ).children( 'ul' ).length > 0 ) {
+
+                    if( \$RMjQuery( this ).find( '> ul' ).css( 'display' ) == 'none' ) {
+
+                        \$RMjQuery( this ).prepend( clickLink );  
+
+                    } else {
+
+                        \$RMjQuery( this ).prepend( clickedLink );  
+
+                    }
+
+                }
+
+            });
+
+        ";
+
+        /*
+        |--------------------------------------------------------------------------
+        | Accordion Animation
+        |--------------------------------------------------------------------------
+        |
+        | This is the part that deals with the accordion animation
+        |
+        */     
+
+        if( $options['RMAccordion'] && $options['RMAccordion'] == 'accordion' ) :
+
+            $accordion = " 
+
+            if( \$RMjQuery( this ).closest( 'ul' ).is( '.responsive-menu' ) ) {
+
+                \$RMjQuery( '.accordion-open' ).removeClass( 'accordion-open' );
+
+                \$RMjQuery( this ).parent( 'li' ).addClass( 'accordion-open' );
+
+                \$RMjQuery( '.responsive-menu li:not( .accordion-open ) > ul' ).slideUp();
+
+
+            }
+
+            ";
+
+        else :
+
+            $accordion = null;
+
+        endif;
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Toggle Buttons Function
+        |--------------------------------------------------------------------------
+        |
+        | This is the function that deals with toggling the toggle buttons
+        |
+        */                
+
+        $js .= "   
+
+            \$RMjQuery( '.appendLink' ).on( 'click', function() { 
+
+                $accordion
+
+                \$RMjQuery( this ).nextAll( '#responsive-menu ul ul' ).slideToggle(); 
+
+                \$RMjQuery( this ).html( \$RMjQuery( this ).hasClass( 'rm-append-active' ) ? '{$inactiveArrow}' : '{$activeArrow}' );
+                \$RMjQuery( this ).toggleClass( 'rm-append-active' );
+
+                $setHeight
+
+            });
+
+            \$RMjQuery( '.rm-click-disabled' ).on( 'click', function() { 
+
+                $accordion
+
+                \$RMjQuery( this ).nextAll( '#responsive-menu ul ul' ).slideToggle(); 
+
+                \$RMjQuery( this ).siblings( '.appendLink' ).html( \$RMjQuery( this ).hasClass( 'rm-append-active' ) ? '{$inactiveArrow}' : '{$activeArrow}' );
+                \$RMjQuery( this ).toggleClass( 'rm-append-active' );
+
+                $setHeight
+
+            }); 
+
+        ";
+
+        /*
+        |--------------------------------------------------------------------------
+        | Menu Closing Options
+        |--------------------------------------------------------------------------
+        |
+        | This is where we set the menu to retract if a link is clicked
+        | Added 1.9
+        |
+        */
+
+        if ( isset( $options['RMClickClose'] ) && $options['RMClickClose'] == 'close' ) : 
+
+           $js .= " 
+               \$RMjQuery( '#responsive-menu ul li a' ).on( 'click', function() { 
+
+                   closeRM();
+
+               } );";
+
+        endif;
+
+        /*
+        |--------------------------------------------------------------------------
+        | Close Tags
+        |--------------------------------------------------------------------------
+        |
+        | This closes the initial document ready call
+        |
+        */ 
+
+        $js .= '}); ';
+
+        /*
+        |--------------------------------------------------------------------------
+        | Strip Tags If Needed
+        |--------------------------------------------------------------------------
+        |
+        | Determine whether to use the <script> tags (when using internal scripts)
+        |
+        */       
+
+        $js .= $options['RMExternal'] ? '' : '</script>';
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Return Finished Script
+        |--------------------------------------------------------------------------
+        |
+        | Finally we return the final script back
+        |
+        */   
+
+        return $js;
+
         
     }
     
